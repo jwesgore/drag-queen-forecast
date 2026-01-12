@@ -1,15 +1,10 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import {
-  fetchWeather as fetchCurrentWeather,
-  fetchCityName as reverseGeocode,
-  getWeatherDescription,
-  fetchHourlyForecast,
-  fetchDailyForecast,
-  type HourlyForecastItem,
-  type DailyForecastItem,
-} from './weather/WeatherHelper'
+import { fetchCityName as reverseGeocode, fetchForecastBundle, type DailyForecastItem } from './helpers/WeatherHelper'
+import { getUserLocation } from './helpers/GeoLocationHelper'
+import { getDragMessages, getDailyPhrase, getEmojiForCode, formatUpdatedLabel } from './helpers/DragHelper'
 
+// Shape of weather display data (transformed from API response)
 type WeatherData = {
   temperature: number
   windspeed: number
@@ -18,14 +13,18 @@ type WeatherData = {
 }
 
 function App() {
+  // User's current coordinates
   const [location, setLocation] = useState<{ lat: number; long: number } | null>(null)
   const [error, setError] = useState<string | null>(null)
+  // Current conditions display data
   const [weather, setWeather] = useState<WeatherData | null>(null)
   const [loading, setLoading] = useState(false)
+  // City name from reverse geocoding
   const [cityName, setCityName] = useState<string | null>(null)
-  const [hourly, setHourly] = useState<HourlyForecastItem[]>([])
+  // 5-day forecast
   const [daily, setDaily] = useState<DailyForecastItem[]>([])
 
+  // When location changes, fetch weather for that location
   useEffect(() => {
     if (location) {
       fetchWeather(location.lat, location.long)
@@ -34,45 +33,33 @@ function App() {
     }
   }, [location])
 
-  const getLocation = () => {
+  // Get user's location from browser geolocation, then reverse geocode to city name
+  const getLocation = async () => {
     setError(null)
     setCityName(null)
-    
-    if (!navigator.geolocation) {
-      setError('Geolocation is not supported by your browser')
-      return
+    try {
+      const { lat, lon } = await getUserLocation()
+      setLocation({ lat, long: lon })
+      await fetchCityName(lat, lon)
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to get location'
+      setError(msg)
     }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const lat = position.coords.latitude
-        const lon = position.coords.longitude
-        setLocation({ lat, long: lon })
-        fetchCityName(lat, lon)
-      },
-      (err) => {
-        setError(`Error: ${err.message}`)
-      }
-    )
   }
 
+  // Fetch current + 5-day forecast from Open-Meteo API
   async function fetchWeather(lat: number, lon: number) {
     setLoading(true)
     setError(null)
     try {
-      const [cw, hourlyData, dailyData] = await Promise.all([
-        fetchCurrentWeather(lat, lon),
-        fetchHourlyForecast(lat, lon, 12),
-        fetchDailyForecast(lat, lon, 5),
-      ])
+      const bundle = await fetchForecastBundle(lat, lon, 5)
       setWeather({
-        temperature: cw.temperatureF,
-        windspeed: cw.windSpeedMph,
-        weathercode: cw.weatherCode,
-        time: cw.time.toISOString(),
+        temperature: bundle.current.temperatureF,
+        windspeed: bundle.current.windSpeedMph,
+        weathercode: bundle.current.weatherCode,
+        time: bundle.current.time.toISOString(),
       })
-      setHourly(hourlyData)
-      setDaily(dailyData)
+      setDaily(bundle.daily)
     } catch (e) {
       const msg = e instanceof Error ? e.message : 'Failed to fetch weather'
       setError(msg)
@@ -81,100 +68,92 @@ function App() {
     }
   }
 
+  // Reverse geocode coords to city name
   async function fetchCityName(lat: number, lon: number) {
     try {
       const name = await reverseGeocode(lat, lon)
       setCityName(name)
     } catch (e) {
-      // reverseGeocode already logs; just clear city name
       setCityName(null)
     }
   }
 
-
   return (
-    <div className="container">
-      <h1>Location Finder</h1>
-      
-      <div className="controls">
-        <button onClick={getLocation}>Get My Location</button>
-      </div>
-      
-      {location && (
-        <div className="location-info">
-          <h2>Location</h2>
-          {cityName && (
-            <p className="city-name">{cityName}</p>
-          )}
-          <p><strong>Latitude:</strong> {location.lat.toFixed(4)}</p>
-          <p><strong>Longitude:</strong> {location.long.toFixed(4)}</p>
+    <div className="dq-page">
+      {/* Header with branding and nav tabs */}
+      <header className="dq-header">
+        <div className="dq-brand">
+          <div className="dq-title">Drag Queen</div>
+          <div className="dq-sub">FORECAST</div>
         </div>
-      )}
-      
-      {loading && (
-        <div className="loading">Loading weather data...</div>
-      )}
-      
+        <nav className="dq-nav">
+          <span className="dq-tab active">Home</span>
+          <span className="dq-tab">Weekly Shade</span>
+          <span className="dq-tab">Fashion Tips</span>
+          <span className="dq-tab">Tea & Drama</span>
+          {/* Trigger geolocation when clicked */}
+          <button className="dq-werk" onClick={getLocation}>WERK</button>
+        </nav>
+      </header>
+
+      {/* Location + last update time */}
+      <section className="dq-location">
+        <div className="dq-location-text">
+          <strong>Your Location:</strong> {cityName ?? '—'}
+        </div>
+        <div className="dq-updated">Last updated: {formatUpdatedLabel(weather?.time)}</div>
+      </section>
+
+      {/* Loading indicator */}
+      {loading && <div className="dq-loading">Fetching the shade…</div>}
+
+      {/* Today's 4 sassy forecast cards */}
       {weather && !loading && (
-        <div className="weather-info">
-          <h2>Current Weather</h2>
-          <div className="weather-details">
-            <div className="weather-item">
-              <span className="weather-label">Temperature:</span>
-              <span className="weather-value">{weather.temperature}°F</span>
-            </div>
-            <div className="weather-item">
-              <span className="weather-label">Conditions:</span>
-              <span className="weather-value">{getWeatherDescription(weather.weathercode)}</span>
-            </div>
-            <div className="weather-item">
-              <span className="weather-label">Wind Speed:</span>
-              <span className="weather-value">{weather.windspeed} mph</span>
-            </div>
+        <section className="dq-today">
+          <h2>Today's Drag‑tastic Forecast:</h2>
+          <div className="dq-cards">
+            {getDragMessages(weather).map((msg, i) => (
+              <div className="dq-card" key={`m-${i}`}>
+                {/* Static emoji per card position */}
+                <span className="dq-emoji">{i === 0 ? '😎' : i === 1 ? '💇‍♀️' : i === 2 ? '⛪️' : '💄'}</span>
+                <span className="dq-card-text">{msg}</span>
+              </div>
+            ))}
           </div>
-
-          {hourly.length > 0 && (
-            <div className="forecast-hourly">
-              <h3>Next 12 Hours</h3>
-              <div className="forecast-grid">
-                {hourly.map((h, idx) => (
-                  <div className="forecast-card" key={`h-${idx}`}>
-                    <div className="forecast-time">
-                      {h.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </div>
-                    <div className="forecast-temp">{Math.round(h.temperatureF)}°F</div>
-                    <div className="forecast-cond">{getWeatherDescription(h.weatherCode)}</div>
-                    <div className="forecast-wind">{Math.round(h.windSpeedMph)} mph</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {daily.length > 0 && (
-            <div className="forecast-daily">
-              <h3>5‑Day Forecast</h3>
-              <div className="forecast-grid">
-                {daily.map((d, idx) => (
-                  <div className="forecast-card" key={`d-${idx}`}>
-                    <div className="forecast-date">
-                      {d.date.toLocaleDateString([], { month: 'short', day: 'numeric' })}
-                    </div>
-                    <div className="forecast-temp">{Math.round(d.highF)}° / {Math.round(d.lowF)}°F</div>
-                    <div className="forecast-cond">{getWeatherDescription(d.weatherCode)}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
+        </section>
       )}
-      
-      {error && (
-        <div className="error">
-          {error}
-        </div>
+
+      {/* 3-day forecast tiles */}
+      {daily.length > 0 && (
+        <section className="dq-extended">
+          <h2>Extended Shade Forecast</h2>
+          <div className="dq-forecast-grid">
+            {daily.slice(0, 3).map((d, i) => (
+              <div className="dq-forecast-tile" key={`d-${i}`}>
+                <div className="dq-forecast-day">
+                  {d.date.toLocaleDateString([], { weekday: 'long' })}
+                </div>
+                <div className="dq-forecast-body">
+                  <div className="dq-forecast-emoji">
+                    {getEmojiForCode(d.weatherCode)}
+                  </div>
+                  <div className="dq-forecast-text">
+                    {getDailyPhrase(Math.round(d.highF), d.weatherCode)}
+                  </div>
+                  <div className="dq-forecast-temps">{Math.round(d.highF)}° / {Math.round(d.lowF)}°F</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
+
+      {/* Footer with tip + social + error display */}
+      <footer className="dq-footer">
+        <div className="dq-tip">Better slap on extra setting spray & pray to the weather gods, queen!</div>
+        <div className="dq-share">Share the shade: <span>📘</span><span>🐦</span><span>📸</span></div>
+        {error && <div className="dq-error">{error}</div>}
+      </footer>
     </div>
   )
 }

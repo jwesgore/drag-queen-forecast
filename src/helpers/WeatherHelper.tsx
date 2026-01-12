@@ -1,5 +1,6 @@
 import { fetchWeatherApi } from 'openmeteo'
 
+// Current conditions
 export interface CurrentWeather {
   temperatureF: number
   windSpeedMph: number
@@ -8,6 +9,7 @@ export interface CurrentWeather {
   time: Date
 }
 
+// Hourly forecast item (12 items by default)
 export interface HourlyForecastItem {
   time: Date
   temperatureF: number
@@ -16,6 +18,7 @@ export interface HourlyForecastItem {
   precipitationProbability?: number
 }
 
+// Daily forecast item (5 items by default)
 export interface DailyForecastItem {
   date: Date
   weatherCode: number
@@ -23,7 +26,7 @@ export interface DailyForecastItem {
   lowF: number
 }
 
-// Fetches the city name based on latitude and longitude using a reverse geocoding API using BigDataCloud
+// Reverse geocode lat/lon to city name using BigDataCloud
 export const fetchCityName = async (
   lat: number,
   lon: number
@@ -47,7 +50,7 @@ export const fetchCityName = async (
   }
 }
 
-// Fetches the current weather data from Open-Meteo API
+// Get current conditions from Open-Meteo
 export const fetchWeather = async (
   lat: number,
   lon: number
@@ -96,7 +99,7 @@ export const fetchWeather = async (
   }
 }
 
-// Fetches the hourly weather forecast from Open-Meteo API
+// Get hourly forecast from Open-Meteo
 export const fetchHourlyForecast = async (
   lat: number,
   lon: number,
@@ -151,7 +154,7 @@ export const fetchHourlyForecast = async (
   return items
 }
 
-// Fetches the daily weather forecast from Open-Meteo API
+// Get daily forecast from Open-Meteo
 export const fetchDailyForecast = async (
   lat: number,
   lon: number,
@@ -232,4 +235,21 @@ export const getWeatherDescription = (code: number): string => {
     99: 'Thunderstorm with heavy hail',
   }
   return weatherCodes[code] || 'Unknown'
+}
+
+export interface ForecastBundle {
+  current: CurrentWeather
+  daily: DailyForecastItem[]
+}
+
+export const fetchForecastBundle = async (
+  lat: number,
+  lon: number,
+  days = 5
+): Promise<ForecastBundle> => {
+  const [current, daily] = await Promise.all([
+    fetchWeather(lat, lon),
+    fetchDailyForecast(lat, lon, days),
+  ])
+  return { current, daily }
 }

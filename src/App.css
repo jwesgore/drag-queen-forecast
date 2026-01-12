@@ -1,127 +1,76 @@
+/* Drag Queen Forecast Theme */
 #root {
-  max-width: 1280px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
 }
 
-.container {
+.dq-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 1.5rem;
-  width: 100%;
-  max-width: 400px;
 }
 
-button {
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  background-color: #646cff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
+.dq-header {
+  background: linear-gradient(135deg, #8a2be2, #ff4eb6);
+  color: #fff;
+  padding: 1.2rem 1.6rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
+.dq-brand { display: flex; align-items: baseline; gap: 1rem; }
+.dq-title { font-family: "Lilita One", system-ui; font-size: 2.4rem; letter-spacing: 0.5px; }
+.dq-sub { font-weight: 900; font-size: 1.6rem; }
+.dq-nav { display: flex; gap: 0.75rem; align-items: center; margin-top: 0.75rem; }
+.dq-tab { background: rgba(255,255,255,0.15); padding: 0.5rem 0.9rem; border-radius: 999px; font-weight: 600; }
+.dq-tab.active { background: rgba(255,255,255,0.30); }
+.dq-werk { margin-left: auto; background: #ff69b4; color: white; font-weight: 900; border: none; padding: 0.55rem 1rem; border-radius: 999px; cursor: pointer; }
+.dq-werk:hover { filter: brightness(1.05); }
 
-button:hover {
-  background-color: #535bf2;
-}
-
-.location-info {
-  background-color: #1a1a1a;
-  padding: 2rem;
-  border-radius: 8px;
-  min-width: 300px;
-}
-
-.location-info h2 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: #646cff;
-}
-
-.city-name {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #646cff;
-}
-
-.location-info p {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
-}
-
-.loading {
-  color: #888;
-  font-size: 1.1rem;
-  padding: 1rem;
-}
-
-.weather-info {
-  background-color: #1a1a1a;
-  padding: 2rem;
-  border-radius: 8px;
-  min-width: 300px;
-  max-width: 500px;
-}
-
-.weather-info h2 {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-  color: #646cff;
-  text-align: center;
-}
-
-.weather-details {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.weather-item {
+.dq-location {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem;
-  background-color: #2a2a2a;
-  border-radius: 6px;
+  background: #3a0f58;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
 }
+.dq-updated { opacity: 0.85; }
 
-.weather-label {
-  font-weight: 600;
-  color: #888;
-}
+.dq-loading { color: #fff; text-align: center; }
 
-.weather-value {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: white;
-}
+.dq-today h2, .dq-extended h2 { text-align: center; color: #ffceed; font-weight: 900; }
 
-.error {
-  color: #ff6b6b;
-  padding: 1rem;
-  border-radius: 8px;
-  background-color: rgba(255, 107, 107, 0.1);
+.dq-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
 }
+@media (min-width: 640px) { .dq-cards { grid-template-columns: 1fr; } }
+.dq-card { display: flex; align-items: center; gap: 0.75rem; background: linear-gradient(135deg, #7f1d9b, #ec4899); color: #fff; padding: 0.9rem 1rem; border-radius: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
+.dq-card .dq-emoji { font-size: 1.6rem; }
+.dq-card-text { font-size: 1.25rem; font-weight: 800; letter-spacing: 0.2px; }
+
+.dq-forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.dq-forecast-tile {
+  background: linear-gradient(180deg, #f3d1ff, #ffe0f2);
+  color: #4b006e;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+.dq-forecast-day { font-weight: 900; padding: 0.6rem 0.9rem; background: rgba(75,0,110,0.1); border-top-left-radius: 12px; border-top-right-radius: 12px; }
+.dq-forecast-body { padding: 0.9rem; display: grid; gap: 0.4rem; justify-items: center; }
+.dq-forecast-emoji { font-size: 1.6rem; }
+.dq-forecast-text { font-weight: 800; text-align: center; }
+.dq-forecast-temps { font-weight: 700; opacity: 0.8; }
+
+.dq-footer { text-align: center; color: #ffd7ef; display: grid; gap: 0.6rem; }
+.dq-share span { margin: 0 0.25rem; }
+.dq-error { color: #ff6b6b; }
+
+/* Page backdrop */
+body { background: radial-gradient(1200px 600px at 20% -10%, #8a2be2 20%, transparent 60%), radial-gradient(1200px 600px at 100% 0%, #ff4eb6 10%, transparent 60%), #2b0a3d; }
