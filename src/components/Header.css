@@ -4,12 +4,50 @@
   padding: 1.2rem 1.6rem;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-.dq-brand { display: flex; align-items: baseline; gap: 1rem; }
+.dq-brand { display: flex; align-items: baseline; gap: 1rem; flex: 1; }
 .dq-title { font-family: "Lilita One", system-ui; font-size: 2.4rem; letter-spacing: 0.5px; }
 .dq-sub { font-weight: 900; font-size: 1.6rem; }
+
+/* Hamburger menu button */
+.dq-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger-line {
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
 .dq-nav { display: flex; gap: 0.75rem; align-items: center; margin-top: 0.75rem; flex-wrap: wrap; }
-.dq-tab { background: rgba(255,255,255,0.15); padding: 0.5rem 0.9rem; border-radius: 999px; font-weight: 600; font-size: 0.9rem; border: none; color: #fff; cursor: pointer; transition: all 0.2s ease; }
+.dq-tab { 
+  background: rgba(255,255,255,0.15); 
+  padding: 0.5rem 0.9rem; 
+  border-radius: 999px; 
+  font-weight: 600; 
+  font-size: 0.9rem; 
+  border: none; 
+  color: #fff; 
+  cursor: pointer; 
+  transition: all 0.2s ease;
+  display: inline-block;
+  box-sizing: border-box;
+}
 .dq-tab:hover { 
   background: rgba(255,255,255,0.30);
   filter: brightness(1.1);
@@ -34,6 +72,7 @@
   cursor: pointer; 
   transition: all 0.3s ease;
   outline: none;
+  box-sizing: border-box;
 }
 .dq-werk:hover { 
   filter: brightness(1.05); 
@@ -53,9 +92,15 @@
     padding: 1rem;
   }
   
+  .dq-hamburger {
+    display: flex;
+    order: 3;
+  }
+  
   .dq-brand {
     flex-direction: column;
     gap: 0.3rem;
+    order: 1;
   }
   
   .dq-title {
@@ -67,24 +112,63 @@
   }
   
   .dq-nav {
-    gap: 0.6rem;
-    margin-top: 0.8rem;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, #8a2be2, #ff4eb6);
+    border-radius: 12px;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    visibility: hidden;
+    z-index: 1000;
+    width: calc(100% - 2rem);
+    box-sizing: border-box;
+  }
+  
+  .dq-nav.open {
+    max-height: 400px;
+    opacity: 1;
+    visibility: visible;
   }
   
   .dq-tab {
     padding: 0.6rem 1rem;
     font-size: 0.95rem;
+    width: 100%;
+    text-align: left;
+    margin-left: 0;
+    display: block;
   }
   
   .dq-werk {
     padding: 0.6rem 1.2rem;
     font-size: 0.95rem;
+    margin-left: 0;
+    width: 100%;
+    display: block;
   }
 }
 
 @media (max-width: 480px) {
   .dq-header {
     padding: 1rem;
+  }
+  
+  .dq-hamburger {
+    display: flex;
+    order: 3;
+  }
+  
+  .dq-brand {
+    order: 1;
   }
   
   .dq-title {
@@ -96,17 +180,48 @@
   }
   
   .dq-nav {
-    gap: 0.5rem;
-    margin-top: 0.8rem;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, #8a2be2, #ff4eb6);
+    border-radius: 12px;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.75rem;
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    visibility: hidden;
+    z-index: 1000;
+    width: calc(100% - 2rem);
+    box-sizing: border-box;
+  }
+  
+  .dq-nav.open {
+    max-height: 400px;
+    opacity: 1;
+    visibility: visible;
   }
   
   .dq-tab {
     padding: 0.5rem 0.8rem;
     font-size: 0.85rem;
+    width: 100%;
+    text-align: left;
+    margin-left: 0;
+    display: block;
   }
   
   .dq-werk {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
+    margin-left: 0;
+    width: 100%;
+    display: block;
   }
+}
 }
