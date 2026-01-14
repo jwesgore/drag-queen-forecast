@@ -1,0 +1,9 @@
+.dq-location {
+  display: flex;
+  justify-content: space-between;
+  background: #3a0f58;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+}
+.dq-updated { opacity: 0.85; }

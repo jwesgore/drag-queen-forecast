@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { fetchCityName as reverseGeocode, fetchForecastBundle, type DailyForecastItem } from './helpers/WeatherHelper'
 import { getUserLocation } from './helpers/GeoLocationHelper'
-import { getDragMessages, getDailyPhrase, getEmojiForCode, formatUpdatedLabel } from './helpers/DragHelper'
+import { Header } from './components/Header'
+import { LocationBanner } from './components/LocationBanner'
+import { TodaysForecast } from './components/cards/TodaysForecast'
+import { ExtendedForecast } from './components/cards/ExtendedForecast'
+import { Footer } from './components/Footer'
 
 // Shape of weather display data (transformed from API response)
 type WeatherData = {
@@ -10,6 +14,9 @@ type WeatherData = {
   windspeed: number
   weathercode: number
   time: string
+  humidity: number
+  precipitationProbability: number
+  hourly: Array<{ temperatureF: number; weatherCode: number; precipitationProbability?: number; time: Date }>
 }
 
 function App() {
@@ -52,12 +59,15 @@ function App() {
     setLoading(true)
     setError(null)
     try {
-      const bundle = await fetchForecastBundle(lat, lon, 5)
+      const bundle = await fetchForecastBundle(lat, lon, 5, 12)
       setWeather({
         temperature: bundle.current.temperatureF,
         windspeed: bundle.current.windSpeedMph,
         weathercode: bundle.current.weatherCode,
         time: bundle.current.time.toISOString(),
+        humidity: bundle.current.humidity,
+        precipitationProbability: bundle.current.precipitationProbability ?? 0,
+        hourly: bundle.hourly ?? [],
       })
       setDaily(bundle.daily)
     } catch (e) {
@@ -80,80 +90,18 @@ function App() {
 
   return (
     <div className="dq-page">
-      {/* Header with branding and nav tabs */}
-      <header className="dq-header">
-        <div className="dq-brand">
-          <div className="dq-title">Drag Queen</div>
-          <div className="dq-sub">FORECAST</div>
-        </div>
-        <nav className="dq-nav">
-          <span className="dq-tab active">Home</span>
-          <span className="dq-tab">Weekly Shade</span>
-          <span className="dq-tab">Fashion Tips</span>
-          <span className="dq-tab">Tea & Drama</span>
-          {/* Trigger geolocation when clicked */}
-          <button className="dq-werk" onClick={getLocation}>WERK</button>
-        </nav>
-      </header>
-
-      {/* Location + last update time */}
-      <section className="dq-location">
-        <div className="dq-location-text">
-          <strong>Your Location:</strong> {cityName ?? '—'}
-        </div>
-        <div className="dq-updated">Last updated: {formatUpdatedLabel(weather?.time)}</div>
-      </section>
+      <Header onWerkClick={getLocation} />
+      <LocationBanner cityName={cityName} lastUpdateTime={weather?.time} />
 
       {/* Loading indicator */}
       {loading && <div className="dq-loading">Fetching the shade…</div>}
 
-      {/* Today's 4 sassy forecast cards */}
-      {weather && !loading && (
-        <section className="dq-today">
-          <h2>Today's Drag‑tastic Forecast:</h2>
-          <div className="dq-cards">
-            {getDragMessages(weather).map((msg, i) => (
-              <div className="dq-card" key={`m-${i}`}>
-                {/* Static emoji per card position */}
-                <span className="dq-emoji">{i === 0 ? '😎' : i === 1 ? '💇‍♀️' : i === 2 ? '⛪️' : '💄'}</span>
-                <span className="dq-card-text">{msg}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      {weather && !loading && <TodaysForecast weather={weather} />}
 
       {/* 3-day forecast tiles */}
-      {daily.length > 0 && (
-        <section className="dq-extended">
-          <h2>Extended Shade Forecast</h2>
-          <div className="dq-forecast-grid">
-            {daily.slice(0, 3).map((d, i) => (
-              <div className="dq-forecast-tile" key={`d-${i}`}>
-                <div className="dq-forecast-day">
-                  {d.date.toLocaleDateString([], { weekday: 'long' })}
-                </div>
-                <div className="dq-forecast-body">
-                  <div className="dq-forecast-emoji">
-                    {getEmojiForCode(d.weatherCode)}
-                  </div>
-                  <div className="dq-forecast-text">
-                    {getDailyPhrase(Math.round(d.highF), d.weatherCode)}
-                  </div>
-                  <div className="dq-forecast-temps">{Math.round(d.highF)}° / {Math.round(d.lowF)}°F</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      <ExtendedForecast daily={daily} />
 
-      {/* Footer with tip + social + error display */}
-      <footer className="dq-footer">
-        <div className="dq-tip">Better slap on extra setting spray & pray to the weather gods, queen!</div>
-        <div className="dq-share">Share the shade: <span>📘</span><span>🐦</span><span>📸</span></div>
-        {error && <div className="dq-error">{error}</div>}
-      </footer>
+      <Footer error={error} />
     </div>
   )
 }

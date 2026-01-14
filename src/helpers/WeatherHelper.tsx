@@ -7,6 +7,8 @@ export interface CurrentWeather {
   weatherCode: number
   isDay: boolean
   time: Date
+  humidity: number
+  precipitationProbability?: number
 }
 
 // Hourly forecast item (12 items by default)
@@ -59,7 +61,7 @@ export const fetchWeather = async (
   const params = {
     latitude: lat,
     longitude: lon,
-    current: ['temperature_2m', 'is_day', 'weather_code', 'wind_speed_10m'],
+    current: ['temperature_2m', 'is_day', 'weather_code', 'wind_speed_10m', 'relative_humidity_2m', 'precipitation_probability'],
     temperature_unit: 'fahrenheit',
     wind_speed_unit: 'mph',
     timeformat: 'unixtime',
@@ -80,8 +82,10 @@ export const fetchWeather = async (
   const isDayVar = current.variables(1)
   const codeVar = current.variables(2)
   const windVar = current.variables(3)
+  const humidityVar = current.variables(4)
+  const popVar = current.variables(5)
 
-  if (!tempVar || !isDayVar || !codeVar || !windVar) {
+  if (!tempVar || !isDayVar || !codeVar || !windVar || !humidityVar) {
     throw new Error('Unexpected current weather payload')
   }
 
@@ -89,6 +93,8 @@ export const fetchWeather = async (
   const isDayValue = isDayVar.value()
   const weatherCode = codeVar.value()
   const windSpeedMph = windVar.value()
+  const humidity = humidityVar.value()
+  const precipitationProbability = popVar?.value()
 
   return {
     temperatureF,
@@ -96,6 +102,8 @@ export const fetchWeather = async (
     weatherCode,
     isDay: Boolean(isDayValue),
     time: new Date(timestampMs),
+    humidity,
+    precipitationProbability,
   }
 }
 
@@ -240,16 +248,19 @@ export const getWeatherDescription = (code: number): string => {
 export interface ForecastBundle {
   current: CurrentWeather
   daily: DailyForecastItem[]
+  hourly?: HourlyForecastItem[]
 }
 
 export const fetchForecastBundle = async (
   lat: number,
   lon: number,
-  days = 5
+  days = 5,
+  hours = 12
 ): Promise<ForecastBundle> => {
-  const [current, daily] = await Promise.all([
+  const [current, daily, hourly] = await Promise.all([
     fetchWeather(lat, lon),
     fetchDailyForecast(lat, lon, days),
+    fetchHourlyForecast(lat, lon, hours),
   ])
-  return { current, daily }
+  return { current, daily, hourly }
 }

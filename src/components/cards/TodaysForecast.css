@@ -1,0 +1,69 @@
+.dq-today h2 { text-align: center; color: #ffceed; font-weight: 900; }
+
+/* Current temperature card */
+.dq-temp-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #7f1d9b, #ec4899);
+  color: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  margin-bottom: 1.5rem;
+}
+.dq-temp-emoji { font-size: 3.5rem; }
+.dq-temp-display { font-size: 3rem; font-weight: 900; }
+
+/* Hourly forecast section */
+.dq-hourly-section h3 { color: #ffceed; font-weight: 800; margin-bottom: 0.75rem; }
+.dq-hourly-scroll {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-behavior: smooth;
+}
+.dq-hourly-scroll::-webkit-scrollbar { height: 6px; }
+.dq-hourly-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 3px; }
+.dq-hourly-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 3px; }
+.dq-hourly-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5); }
+
+.dq-hourly-card {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(127, 29, 155, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.75rem 0.6rem;
+  border-radius: 10px;
+  min-width: 80px;
+  text-align: center;
+}
+.dq-hourly-time { font-size: 0.75rem; font-weight: 700; opacity: 0.85; }
+.dq-hourly-emoji { font-size: 1.5rem; }
+.dq-hourly-temp { font-size: 1rem; font-weight: 800; }
+
+/* Conditions grid */
+.dq-conditions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.dq-condition-box {
+  background: rgba(127, 29, 155, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+}
+.dq-condition-label { font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.5rem; }
+.dq-condition-value { font-size: 1.8rem; font-weight: 900; }

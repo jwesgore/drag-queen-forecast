@@ -1,0 +1,18 @@
+.dq-extended h2 { text-align: center; color: #ffceed; font-weight: 900; }
+
+.dq-forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.dq-forecast-tile {
+  background: linear-gradient(180deg, #f3d1ff, #ffe0f2);
+  color: #4b006e;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+.dq-forecast-day { font-weight: 900; padding: 0.6rem 0.9rem; background: rgba(75,0,110,0.1); border-top-left-radius: 12px; border-top-right-radius: 12px; }
+.dq-forecast-body { padding: 0.9rem; display: grid; gap: 0.4rem; justify-items: center; }
+.dq-forecast-emoji { font-size: 1.6rem; }
+.dq-forecast-text { font-weight: 800; text-align: center; }
+.dq-forecast-temps { font-weight: 700; opacity: 0.8; }

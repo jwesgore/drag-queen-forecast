@@ -1,0 +1,15 @@
+.dq-header {
+  background: linear-gradient(135deg, #8a2be2, #ff4eb6);
+  color: #fff;
+  padding: 1.2rem 1.6rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+.dq-brand { display: flex; align-items: baseline; gap: 1rem; }
+.dq-title { font-family: "Lilita One", system-ui; font-size: 2.4rem; letter-spacing: 0.5px; }
+.dq-sub { font-weight: 900; font-size: 1.6rem; }
+.dq-nav { display: flex; gap: 0.75rem; align-items: center; margin-top: 0.75rem; }
+.dq-tab { background: rgba(255,255,255,0.15); padding: 0.5rem 0.9rem; border-radius: 999px; font-weight: 600; }
+.dq-tab.active { background: rgba(255,255,255,0.30); }
+.dq-werk { margin-left: auto; background: #ff69b4; color: white; font-weight: 900; border: none; padding: 0.55rem 1rem; border-radius: 999px; cursor: pointer; }
+.dq-werk:hover { filter: brightness(1.05); }
