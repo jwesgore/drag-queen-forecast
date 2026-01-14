@@ -5,14 +5,107 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
+
+@media (max-width: 768px) {
+  .dq-extended h2 {
+    font-size: 1.3rem;
+  }
+  
+  .dq-forecast-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dq-extended h2 {
+    font-size: 1.1rem;
+  }
+  
+  .dq-forecast-grid {
+    gap: 0.5rem;
+  }
+}
+
 .dq-forecast-tile {
   background: linear-gradient(180deg, #f3d1ff, #ffe0f2);
   color: #4b006e;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-.dq-forecast-day { font-weight: 900; padding: 0.6rem 0.9rem; background: rgba(75,0,110,0.1); border-top-left-radius: 12px; border-top-right-radius: 12px; }
-.dq-forecast-body { padding: 0.9rem; display: grid; gap: 0.4rem; justify-items: center; }
+.dq-forecast-day { font-weight: 900; padding: 0.6rem 0.9rem; background: rgba(75,0,110,0.1); border-top-left-radius: 12px; border-top-right-radius: 12px; text-align: center; }
+.dq-forecast-body { padding: 0.9rem; display: flex; flex-direction: column; gap: 0.4rem; justify-items: center; text-align: center; flex: 1; }
 .dq-forecast-emoji { font-size: 1.6rem; }
 .dq-forecast-text { font-weight: 800; text-align: center; }
-.dq-forecast-temps { font-weight: 700; opacity: 0.8; }
+.dq-forecast-temps { font-weight: 700; opacity: 0.8; text-align: center; }
+.dq-forecast-detail { font-size: 0.85rem; font-weight: 600; text-align: center; }
+.dq-forecast-footer { font-size: 0.75rem; font-style: italic; opacity: 0.8; text-align: center; margin-top: auto; }
+
+@media (max-width: 768px) {
+  .dq-forecast-day {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.95rem;
+  }
+  
+  .dq-forecast-body {
+    padding: 0.6rem;
+    gap: 0.3rem;
+  }
+  
+  .dq-forecast-emoji {
+    font-size: 1.3rem;
+  }
+  
+  .dq-forecast-text {
+    font-size: 0.85rem;
+  }
+  
+  .dq-forecast-temps {
+    font-size: 0.8rem;
+  }
+  
+  .dq-forecast-detail {
+    font-size: 0.7rem;
+  }
+  
+  .dq-forecast-footer {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dq-forecast-day {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  .dq-forecast-body {
+    padding: 0.5rem;
+    gap: 0.2rem;
+  }
+  
+  .dq-forecast-emoji {
+    font-size: 1.1rem;
+  }
+  
+  .dq-forecast-text {
+    font-size: 0.75rem;
+  }
+  
+  .dq-forecast-temps {
+    font-size: 0.7rem;
+  }
+  
+  .dq-forecast-detail {
+    font-size: 0.6rem;
+  }
+  
+  .dq-forecast-footer {
+    font-size: 0.55rem;
+  }
+}

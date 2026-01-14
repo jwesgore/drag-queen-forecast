@@ -5,5 +5,24 @@
   color: #fff;
   padding: 0.8rem 1rem;
   border-radius: 12px;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 .dq-updated { opacity: 0.85; }
+
+@media (max-width: 768px) {
+  .dq-location {
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dq-location {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.6rem;
+    gap: 0.15rem;
+  }
+}

@@ -3,6 +3,8 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .dq-page {
@@ -15,4 +17,24 @@
 
 /* Page backdrop */
 body { background: radial-gradient(1200px 600px at 20% -10%, #8a2be2 20%, transparent 60%), radial-gradient(1200px 600px at 100% 0%, #ff4eb6 10%, transparent 60%), #2b0a3d; }
+
+@media (max-width: 768px) {
+  #root {
+    padding: 0.75rem;
+  }
+  
+  .dq-page {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #root {
+    padding: 0.5rem;
+  }
+  
+  .dq-page {
+    gap: 0.5rem;
+  }
+}
 
