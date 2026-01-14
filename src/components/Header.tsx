@@ -29,6 +29,11 @@ export function Header({ onWerkClick, onHomeClick, onWeeklyClick, onAboutClick, 
     handleMenuClose()
   }
 
+  const handleWerkClick = () => {
+    onWerkClick()
+    handleMenuClose()
+  }
+
   return (
     <header className="dq-header">
       <div className="dq-brand">
@@ -44,7 +49,7 @@ export function Header({ onWerkClick, onHomeClick, onWeeklyClick, onAboutClick, 
         <button className={`dq-tab ${currentPage === 'weekly' ? 'active' : ''}`} onClick={handleWeeklyClick}>Weekly Shade</button>
         <span className="dq-tab">Fashion Tips</span>
         <button className={`dq-tab ${currentPage === 'about' ? 'active' : ''}`} onClick={handleAboutClick}>What's The Tea</button>
-        <button className="dq-werk" onClick={onWerkClick}>WERK</button>
+        <button className="dq-werk" onClick={handleWerkClick}>WERK</button>
       </nav>
     </header>
   )

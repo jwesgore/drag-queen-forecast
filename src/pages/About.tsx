@@ -8,37 +8,26 @@ export function About() {
         
         <div className="dq-about-content">
           <p>
-            Welcome to <strong>The Dragcast</strong>, where weather forecasting meets fierce fabulous energy! 
-            This isn't your average weather app, honey – we serve you the forecast with a side of shade 
-            and a whole lot of personality.
+            Welcome to <strong>The Dragcast</strong>, your fabulously forecasted weather companion. 
+            This project began as a coding exercise to sharpen my skills in React and TypeScript, but quickly turned 
+            into something a little more <i>iconic</i>. I wanted a weather app that showcased my technical abilities while 
+            also letting my personality shine. As a proudly queer developer, I thought it fitting to add a bit of drag culture, 
+            humor, and a touch of camp.
           </p>
 
-          <h3>About This App</h3>
+          <h3>Get In Touch</h3>
           <p>
-            The Dragcast was created to make checking the weather a little more glamorous and a lot more fun. 
-            We've taken the mundane task of weather checking and given it the glow-up it deserves, complete with:
+            If you have any questions or suggestions feel free to email me at blah@blah.com.
           </p>
-
-          <ul>
-            <li>🌈 Dragtastic weather descriptions that tell it like it is</li>
-            <li>💅 Personality-packed humidity and precipitation commentary</li>
-            <li>⭐ Fierce emoji weather icons that bring the drama</li>
-            <li>📅 A full week of weather shade so you can plan your looks accordingly</li>
-            <li>🎭 Hourly forecasts for when you need to know every detail</li>
-          </ul>
-
-          <h3>How It Works</h3>
           <p>
-            We pull real weather data from Open-Meteo and transform it into the most entertaining forecast 
-            you'll ever read. Your location data is used only to fetch your local weather – we're not here 
-            to track you, just to keep you fabulous in any weather.
+            If you would like to support my work, consider buying me a kofi at.
           </p>
 
           <h3>Credits</h3>
           <p>
             Weather data provided by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo API</a>
             <br />
-            Built with love, sass, and a whole lot of React ⚛️
+            Built with love, sass, and a whole lot of energy drinks.
           </p>
 
           <div className="dq-about-tagline">
