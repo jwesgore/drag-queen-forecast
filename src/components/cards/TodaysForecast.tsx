@@ -41,7 +41,7 @@ export function TodaysForecast({ weather }: TodaysForecastProps) {
           <span className="dq-detail-card-desc">{DraggifyHumidity(weather.humidity)}</span>
         </div>
         <div className="dq-detail-card">
-          <span className="dq-detail-card-label">Chance of Mess</span>
+          <span className="dq-detail-card-label">Chance of Precip</span>
           <span className="dq-detail-card-value">{weather.precipitationProbability}%</span>
           <span className="dq-detail-card-desc">{DraggifyPrecipitation(weather.precipitationProbability)}</span>
         </div>
