@@ -13,7 +13,12 @@
   margin-top: 1rem;
 }
 .dq-brand { display: flex; align-items: baseline; gap: 1rem; flex: 1; }
-.dq-title { font-family: "Lilita One", system-ui; font-size: 2.4rem; letter-spacing: 0.5px; }
+.dq-title { 
+  font-family: "Righteous", sans-serif; 
+  font-size: 2.6rem; 
+  letter-spacing: 1px; 
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
 .dq-sub { font-weight: 900; font-size: 1.6rem; }
 
 /* Hamburger menu button */
