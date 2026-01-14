@@ -25,6 +25,13 @@
   flex: 1;
 }
 
+.dq-temp-greeting { 
+  font-size: 1rem; 
+  font-weight: 700; 
+  opacity: 0.95;
+  text-align: center;
+}
+
 .dq-temp-emoji { font-size: 3.5rem; }
 .dq-temp-display { font-size: 3rem; font-weight: 900; }
 .dq-temp-feels-like {

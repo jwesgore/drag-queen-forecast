@@ -1,4 +1,4 @@
-import { getEmojiForCode, DraggifyHumidity, DraggifyTemperature, DraggifyPrecipitation } from '../../helpers/DragHelper'
+import { getEmojiForCode, DraggifyHumidity, DraggifyTemperature, DraggifyPrecipitation, DraggifyNameOfDay } from '../../helpers/DragHelper'
 import './TodaysForecast.css'
 
 interface TodaysForecastProps {
@@ -23,6 +23,7 @@ export function TodaysForecast({ weather }: TodaysForecastProps) {
       {/* Large current temperature card */}
       <div className="dq-temp-card">
         <div className="dq-temp-left">
+          <div className="dq-temp-greeting">Happy {DraggifyNameOfDay(new Date().getDay())}</div>
           <div className="dq-temp-emoji">{getEmojiForCode(weather.weathercode)}</div>
           <div className="dq-temp-display">{Math.round(weather.temperature)}°F</div>
           <div className="dq-temp-feels-like">
