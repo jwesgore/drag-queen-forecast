@@ -6,7 +6,8 @@ import { Header } from './components/Header'
 import { LocationBanner } from './components/LocationBanner'
 import { TodaysForecast } from './components/cards/TodaysForecast'
 import { ExtendedForecast } from './components/cards/ExtendedForecast'
-import { WeeklyForecast } from './components/cards/WeeklyForecast'
+import { WeeklyForecast } from './pages/WeeklyForecast'
+import { About } from './pages/About'
 import { Footer } from './components/Footer'
 
 // Shape of weather display data (transformed from API response)
@@ -33,7 +34,7 @@ function App() {
   // 5-day forecast
   const [daily, setDaily] = useState<DailyForecastItem[]>([])
   // Current page
-  const [currentPage, setCurrentPage] = useState<'home' | 'weekly'>('home')
+  const [currentPage, setCurrentPage] = useState<'home' | 'weekly' | 'about'>('home')
 
   // Auto-load location on mount
   useEffect(() => {
@@ -104,6 +105,7 @@ function App() {
         onWerkClick={getLocation} 
         onHomeClick={() => setCurrentPage('home')}
         onWeeklyClick={() => setCurrentPage('weekly')}
+        onAboutClick={() => setCurrentPage('about')}
         currentPage={currentPage}
       />
       <LocationBanner cityName={cityName} lastUpdateTime={weather?.time} />
@@ -121,6 +123,10 @@ function App() {
 
       {currentPage === 'weekly' && (
         <WeeklyForecast daily={daily} />
+      )}
+
+      {currentPage === 'about' && (
+        <About />
       )}
 
       <Footer error={error} />

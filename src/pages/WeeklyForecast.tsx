@@ -1,5 +1,5 @@
-import { getEmojiForCode, DraggifyNameOfDay } from '../../helpers/DragHelper'
-import type { DailyForecastItem } from '../../helpers/WeatherHelper'
+import { getEmojiForCode, DraggifyNameOfDay } from '../helpers/DragHelper'
+import type { DailyForecastItem } from '../helpers/WeatherHelper'
 import './WeeklyForecast.css'
 
 interface WeeklyForecastProps {

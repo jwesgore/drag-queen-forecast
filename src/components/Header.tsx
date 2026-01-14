@@ -5,10 +5,11 @@ interface HeaderProps {
   onWerkClick: () => void
   onHomeClick: () => void
   onWeeklyClick: () => void
-  currentPage: 'home' | 'weekly'
+  onAboutClick: () => void
+  currentPage: 'home' | 'weekly' | 'about'
 }
 
-export function Header({ onWerkClick, onHomeClick, onWeeklyClick, currentPage }: HeaderProps) {
+export function Header({ onWerkClick, onHomeClick, onWeeklyClick, onAboutClick, currentPage }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const handleMenuClose = () => setMenuOpen(false)
@@ -20,6 +21,11 @@ export function Header({ onWerkClick, onHomeClick, onWeeklyClick, currentPage }:
 
   const handleWeeklyClick = () => {
     onWeeklyClick()
+    handleMenuClose()
+  }
+
+  const handleAboutClick = () => {
+    onAboutClick()
     handleMenuClose()
   }
 
@@ -37,7 +43,7 @@ export function Header({ onWerkClick, onHomeClick, onWeeklyClick, currentPage }:
         <button className={`dq-tab ${currentPage === 'home' ? 'active' : ''}`} onClick={handleHomeClick}>Home</button>
         <button className={`dq-tab ${currentPage === 'weekly' ? 'active' : ''}`} onClick={handleWeeklyClick}>Weekly Shade</button>
         <span className="dq-tab">Fashion Tips</span>
-        <span className="dq-tab">Tea & Drama</span>
+        <button className={`dq-tab ${currentPage === 'about' ? 'active' : ''}`} onClick={handleAboutClick}>What's The Tea</button>
         <button className="dq-werk" onClick={onWerkClick}>WERK</button>
       </nav>
     </header>
