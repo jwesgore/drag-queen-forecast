@@ -83,6 +83,8 @@ export interface DailyForecastItem {
   weatherCode: number
   highF: number
   lowF: number
+  precipitationProbability: number
+  humidity: number
 }
 
 // Reverse geocode lat/lon to city name using BigDataCloud
@@ -232,7 +234,7 @@ export const fetchDailyForecast = async (
   const params = {
     latitude: lat,
     longitude: lon,
-    daily: ['weather_code', 'temperature_2m_max', 'temperature_2m_min'],
+    daily: ['weather_code', 'temperature_2m_max', 'temperature_2m_min', 'precipitation_probability_max', 'relative_humidity_2m_mean'],
     temperature_unit: 'fahrenheit',
     timeformat: 'unixtime',
     timezone: 'auto',
@@ -251,12 +253,16 @@ export const fetchDailyForecast = async (
   const codeVar = daily.variables(0)
   const maxVar = daily.variables(1)
   const minVar = daily.variables(2)
+  const precipVar = daily.variables(3)
+  const humidityVar = daily.variables(4)
 
   const codes = codeVar?.valuesArray()
   const highs = maxVar?.valuesArray()
   const lows = minVar?.valuesArray()
+  const precips = precipVar?.valuesArray()
+  const humidities = humidityVar?.valuesArray()
 
-  if (!codes || !highs || !lows) {
+  if (!codes || !highs || !lows || !precips || !humidities) {
     throw new Error('Unexpected daily forecast payload')
   }
 
@@ -268,6 +274,8 @@ export const fetchDailyForecast = async (
       weatherCode: codes[i],
       highF: highs[i],
       lowF: lows[i],
+      precipitationProbability: precips[i],
+      humidity: humidities[i],
     }
   })
 

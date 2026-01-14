@@ -57,7 +57,12 @@ export function TodaysForecast({ weather }: TodaysForecastProps) {
                 {hour.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </div>
               <div className="dq-hourly-emoji">{getEmojiForCode(hour.weatherCode)}</div>
-              <div className="dq-hourly-temp">{Math.round(hour.temperatureF)}°</div>
+              <div className="dq-hourly-bottom">
+                <div className="dq-hourly-temp">{Math.round(hour.temperatureF)}°</div>
+                {hour.precipitationProbability !== undefined && (
+                  <div className="dq-hourly-precip">💧 {Math.round(hour.precipitationProbability)}%</div>
+                )}
+              </div>
             </div>
           ))}
         </div>

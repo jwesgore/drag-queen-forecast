@@ -63,12 +63,12 @@ function App() {
     }
   }
 
-  // Fetch current + 5-day forecast from Open-Meteo API
+  // Fetch current + 7-day forecast from Open-Meteo API
   async function fetchWeather(lat: number, lon: number) {
     setLoading(true)
     setError(null)
     try {
-      const bundle = await fetchForecastBundle(lat, lon, 5, 12)
+      const bundle = await fetchForecastBundle(lat, lon, 7, 12)
       setWeather({
         temperature: bundle.current.temperatureF,
         apparentTemperature: bundle.current.apparentTemperatureF,

@@ -37,7 +37,7 @@
 }
 
 .dq-weekly-date {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   opacity: 0.9;
   min-width: 80px;
   flex-shrink: 0;
@@ -76,6 +76,23 @@
 
 .dq-weekly-divider {
   opacity: 0.5;
+}
+
+.dq-weekly-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  opacity: 0.9;
+  flex-shrink: 0;
+  min-width: 70px;
+}
+
+.dq-weekly-precip,
+.dq-weekly-humidity {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 @media (max-width: 768px) {

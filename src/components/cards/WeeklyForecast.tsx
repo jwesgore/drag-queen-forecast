@@ -13,7 +13,6 @@ export function WeeklyForecast({ daily }: WeeklyForecastProps) {
 
   return (
     <section className="dq-weekly">
-      <h2 className="dq-weekly-title">Weekly Shade Forecast</h2>
       <div className="dq-weekly-grid">
         {daily.map((day, index) => (
           <div className="dq-weekly-card" key={index}>
@@ -26,6 +25,10 @@ export function WeeklyForecast({ daily }: WeeklyForecastProps) {
               <span className="dq-weekly-high">{Math.round(day.highF)}°</span>
               <span className="dq-weekly-divider">/</span>
               <span className="dq-weekly-low">{Math.round(day.lowF)}°</span>
+            </div>
+            <div className="dq-weekly-details">
+              <div className="dq-weekly-precip">💧 {Math.round(day.precipitationProbability)}%</div>
+              <div className="dq-weekly-humidity">💦 {Math.round(day.humidity)}%</div>
             </div>
           </div>
         ))}
