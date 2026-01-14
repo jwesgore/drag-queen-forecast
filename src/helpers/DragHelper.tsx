@@ -200,3 +200,24 @@ export function getDragThunderstormDescription(code: number): string {
 			return "Atmospheric Menace"
 	}
 }
+
+// Get drag description for humidity level
+export function DraggifyHumidity(humidity: number): string {
+	if (humidity >= 85) return "Frizz Apocalypse"
+	if (humidity >= 70) return "Humidity Said No"
+	if (humidity >= 60) return "Dewy but Dangerous"
+	if (humidity >= 45) return "Comfortably Snatched"
+	if (humidity >= 30) return "Matte & Mindful"
+	if (humidity >= 15) return "Dry but Defined"
+	return "Desert-Level Drama"
+}
+
+// Get drag description for precipitation probability
+export function DraggifyPrecipitation(percent: number): string {
+	if (percent >= 80) return "Bring the umbrella, diva"
+	if (percent >= 60) return "Probably gonna get wet"
+	if (percent >= 40) return "Questionable weather tea"
+	if (percent >= 20) return "Slight chance of drama"
+	if (percent > 0) return "Practically bone dry"
+	return "Zero chance, werk!"
+}

@@ -24,6 +24,24 @@
 
 .dq-temp-emoji { font-size: 3.5rem; }
 .dq-temp-display { font-size: 3rem; font-weight: 900; }
+.dq-temp-feels-like {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  margin-top: 0.5rem;
+}
+.dq-temp-feels-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.95;
+}
+.dq-temp-feels-desc {
+  font-size: 0.75rem;
+  font-style: italic;
+  opacity: 0.75;
+  text-align: center;
+}
 
 .dq-temp-divider {
   width: 2px;
@@ -51,6 +69,13 @@
   border-bottom: none;
 }
 
+.dq-temp-detail-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 100%;
+}
+
 .dq-temp-detail-label {
   font-size: 0.95rem;
   opacity: 0.9;
@@ -60,6 +85,12 @@
 .dq-temp-detail-value {
   font-size: 1.4rem;
   font-weight: 800;
+}
+
+.dq-temp-detail-desc {
+  font-size: 0.75rem;
+  font-style: italic;
+  opacity: 0.75;
 }
 
 /* Hourly forecast section */

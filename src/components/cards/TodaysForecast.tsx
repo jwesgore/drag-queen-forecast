@@ -1,4 +1,4 @@
-import { getEmojiForCode } from '../../helpers/DragHelper'
+import { getEmojiForCode, DraggifyHumidity, DraggifyTemperature, DraggifyPrecipitation } from '../../helpers/DragHelper'
 import './TodaysForecast.css'
 
 interface TodaysForecastProps {
@@ -25,20 +25,26 @@ export function TodaysForecast({ weather }: TodaysForecastProps) {
         <div className="dq-temp-left">
           <div className="dq-temp-emoji">{getEmojiForCode(weather.weathercode)}</div>
           <div className="dq-temp-display">{Math.round(weather.temperature)}°F</div>
+          <div className="dq-temp-feels-like">
+            <span className="dq-temp-feels-label">Emotionally: {Math.round(weather.apparentTemperature)}°F</span>
+            <span className="dq-temp-feels-desc">{DraggifyTemperature(weather.apparentTemperature)}</span>
+          </div>
         </div>
         <div className="dq-temp-divider"></div>
         <div className="dq-temp-right">
           <div className="dq-temp-detail">
-            <span className="dq-temp-detail-label">Feels Like</span>
-            <span className="dq-temp-detail-value">{Math.round(weather.apparentTemperature)}°F</span>
+            <div className="dq-temp-detail-column">
+              <span className="dq-temp-detail-label">Moisture Levels</span>
+              <span className="dq-temp-detail-value">{weather.humidity}%</span>
+              <span className="dq-temp-detail-desc">{DraggifyHumidity(weather.humidity)}</span>
+            </div>
           </div>
           <div className="dq-temp-detail">
-            <span className="dq-temp-detail-label">Humidity</span>
-            <span className="dq-temp-detail-value">{weather.humidity}%</span>
-          </div>
-          <div className="dq-temp-detail">
-            <span className="dq-temp-detail-label">Precipitation</span>
-            <span className="dq-temp-detail-value">{weather.precipitationProbability}%</span>
+            <div className="dq-temp-detail-column">
+              <span className="dq-temp-detail-label">Precipitation</span>
+              <span className="dq-temp-detail-value">{weather.precipitationProbability}%</span>
+              <span className="dq-temp-detail-desc">{DraggifyPrecipitation(weather.precipitationProbability)}</span>
+            </div>
           </div>
         </div>
       </div>
