@@ -31,6 +31,13 @@ function App() {
   const [cityName, setCityName] = useState<string | null>(null)
   // 5-day forecast
   const [daily, setDaily] = useState<DailyForecastItem[]>([])
+  // Current page
+  const [currentPage, setCurrentPage] = useState<'home' | 'weekly'>('home')
+
+  // Auto-load location on mount
+  useEffect(() => {
+    getLocation()
+  }, [])
 
   // When location changes, fetch weather for that location
   useEffect(() => {
@@ -92,16 +99,31 @@ function App() {
 
   return (
     <div className="dq-page">
-      <Header onWerkClick={getLocation} />
+      <Header 
+        onWerkClick={getLocation} 
+        onHomeClick={() => setCurrentPage('home')}
+        onWeeklyClick={() => setCurrentPage('weekly')}
+        currentPage={currentPage}
+      />
       <LocationBanner cityName={cityName} lastUpdateTime={weather?.time} />
 
       {/* Loading indicator */}
       {loading && <div className="dq-loading">Fetching the shade…</div>}
 
-      {weather && !loading && <TodaysForecast weather={weather} />}
+      {currentPage === 'home' && (
+        <>
+          {weather && !loading && <TodaysForecast weather={weather} />}
+          {/* 3-day forecast tiles */}
+          <ExtendedForecast daily={daily} />
+        </>
+      )}
 
-      {/* 3-day forecast tiles */}
-      <ExtendedForecast daily={daily} />
+      {currentPage === 'weekly' && (
+        <div className="dq-weekly-page">
+          <h2>Weekly Forecast</h2>
+          <ExtendedForecast daily={daily} />
+        </div>
+      )}
 
       <Footer error={error} />
     </div>

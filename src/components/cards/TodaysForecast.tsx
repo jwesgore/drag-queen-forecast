@@ -31,22 +31,19 @@ export function TodaysForecast({ weather }: TodaysForecastProps) {
             <span className="dq-temp-feels-desc">{DraggifyTemperature(weather.apparentTemperature)}</span>
           </div>
         </div>
-        <div className="dq-temp-divider"></div>
-        <div className="dq-temp-right">
-          <div className="dq-temp-detail">
-            <div className="dq-temp-detail-column">
-              <span className="dq-temp-detail-label">Moisture Levels</span>
-              <span className="dq-temp-detail-value">{weather.humidity}%</span>
-              <span className="dq-temp-detail-desc">{DraggifyHumidity(weather.humidity)}</span>
-            </div>
-          </div>
-          <div className="dq-temp-detail">
-            <div className="dq-temp-detail-column">
-              <span className="dq-temp-detail-label">Chance of Mess</span>
-              <span className="dq-temp-detail-value">{weather.precipitationProbability}%</span>
-              <span className="dq-temp-detail-desc">{DraggifyPrecipitation(weather.precipitationProbability)}</span>
-            </div>
-          </div>
+      </div>
+
+      {/* Humidity and Precipitation cards */}
+      <div className="dq-detail-cards">
+        <div className="dq-detail-card">
+          <span className="dq-detail-card-label">Moisture Levels</span>
+          <span className="dq-detail-card-value">{weather.humidity}%</span>
+          <span className="dq-detail-card-desc">{DraggifyHumidity(weather.humidity)}</span>
+        </div>
+        <div className="dq-detail-card">
+          <span className="dq-detail-card-label">Chance of Mess</span>
+          <span className="dq-detail-card-value">{weather.precipitationProbability}%</span>
+          <span className="dq-detail-card-desc">{DraggifyPrecipitation(weather.precipitationProbability)}</span>
         </div>
       </div>
 

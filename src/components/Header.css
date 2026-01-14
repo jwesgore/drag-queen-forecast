@@ -9,7 +9,19 @@
 .dq-title { font-family: "Lilita One", system-ui; font-size: 2.4rem; letter-spacing: 0.5px; }
 .dq-sub { font-weight: 900; font-size: 1.6rem; }
 .dq-nav { display: flex; gap: 0.75rem; align-items: center; margin-top: 0.75rem; flex-wrap: wrap; }
-.dq-tab { background: rgba(255,255,255,0.15); padding: 0.5rem 0.9rem; border-radius: 999px; font-weight: 600; font-size: 0.9rem; }
+.dq-tab { background: rgba(255,255,255,0.15); padding: 0.5rem 0.9rem; border-radius: 999px; font-weight: 600; font-size: 0.9rem; border: none; color: #fff; cursor: pointer; transition: all 0.2s ease; }
+.dq-tab:hover { 
+  background: rgba(255,255,255,0.30);
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.dq-tab:active {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.dq-tab:focus {
+  outline: none;
+}
 .dq-tab.active { background: rgba(255,255,255,0.30); }
 .dq-werk { 
   margin-left: auto; 
@@ -38,7 +50,7 @@
 
 @media (max-width: 768px) {
   .dq-header {
-    padding: 0.8rem;
+    padding: 1rem;
   }
   
   .dq-brand {
@@ -47,53 +59,54 @@
   }
   
   .dq-title {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
   }
   
   .dq-sub {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
   }
   
   .dq-nav {
-    gap: 0.4rem;
-    margin-top: 0.4rem;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
   }
   
   .dq-tab {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.7rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
   }
   
   .dq-werk {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.7rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
   }
 }
 
 @media (max-width: 480px) {
   .dq-header {
-    padding: 0.6rem;
+    padding: 1rem;
   }
   
   .dq-title {
-    font-size: 1rem;
+    font-size: 1.6rem;
   }
   
   .dq-sub {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   
   .dq-nav {
-    gap: 0.3rem;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
   }
   
   .dq-tab {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.6rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
   }
   
   .dq-werk {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.6rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
   }
 }

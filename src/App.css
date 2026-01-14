@@ -15,6 +15,20 @@
 
 .dq-loading { color: #fff; text-align: center; }
 
+.dq-weekly-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dq-weekly-page h2 {
+  color: #ffceed;
+  font-weight: 900;
+  font-size: 2rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
 /* Page backdrop */
 body { background: radial-gradient(1200px 600px at 20% -10%, #8a2be2 20%, transparent 60%), radial-gradient(1200px 600px at 100% 0%, #ff4eb6 10%, transparent 60%), #2b0a3d; }
 
