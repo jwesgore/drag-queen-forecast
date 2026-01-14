@@ -6,6 +6,7 @@ import { Header } from './components/Header'
 import { LocationBanner } from './components/LocationBanner'
 import { TodaysForecast } from './components/cards/TodaysForecast'
 import { ExtendedForecast } from './components/cards/ExtendedForecast'
+import { WeeklyForecast } from './components/cards/WeeklyForecast'
 import { Footer } from './components/Footer'
 
 // Shape of weather display data (transformed from API response)
@@ -119,10 +120,7 @@ function App() {
       )}
 
       {currentPage === 'weekly' && (
-        <div className="dq-weekly-page">
-          <h2>Weekly Forecast</h2>
-          <ExtendedForecast daily={daily} />
-        </div>
+        <WeeklyForecast daily={daily} />
       )}
 
       <Footer error={error} />
