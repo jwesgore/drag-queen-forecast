@@ -4,6 +4,7 @@ import './TodaysForecast.css'
 interface TodaysForecastProps {
   weather: {
     temperature: number
+    apparentTemperature: number
     weathercode: number
     humidity: number
     precipitationProbability: number
@@ -19,12 +20,27 @@ interface TodaysForecastProps {
 export function TodaysForecast({ weather }: TodaysForecastProps) {
   return (
     <section className="dq-today">
-      <h2>Today's Dragcast:</h2>
-      
       {/* Large current temperature card */}
       <div className="dq-temp-card">
-        <div className="dq-temp-emoji">{getEmojiForCode(weather.weathercode)}</div>
-        <div className="dq-temp-display">{Math.round(weather.temperature)}°F</div>
+        <div className="dq-temp-left">
+          <div className="dq-temp-emoji">{getEmojiForCode(weather.weathercode)}</div>
+          <div className="dq-temp-display">{Math.round(weather.temperature)}°F</div>
+        </div>
+        <div className="dq-temp-divider"></div>
+        <div className="dq-temp-right">
+          <div className="dq-temp-detail">
+            <span className="dq-temp-detail-label">Feels Like</span>
+            <span className="dq-temp-detail-value">{Math.round(weather.apparentTemperature)}°F</span>
+          </div>
+          <div className="dq-temp-detail">
+            <span className="dq-temp-detail-label">Humidity</span>
+            <span className="dq-temp-detail-value">{weather.humidity}%</span>
+          </div>
+          <div className="dq-temp-detail">
+            <span className="dq-temp-detail-label">Precipitation</span>
+            <span className="dq-temp-detail-value">{weather.precipitationProbability}%</span>
+          </div>
+        </div>
       </div>
 
       {/* 12-hour forecast cards */}
@@ -40,18 +56,6 @@ export function TodaysForecast({ weather }: TodaysForecastProps) {
               <div className="dq-hourly-temp">{Math.round(hour.temperatureF)}°</div>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* Humidity and precipitation */}
-      <div className="dq-conditions-grid">
-        <div className="dq-condition-box">
-          <div className="dq-condition-label">Humidity</div>
-          <div className="dq-condition-value">{weather.humidity}%</div>
-        </div>
-        <div className="dq-condition-box">
-          <div className="dq-condition-label">Chance of Rain</div>
-          <div className="dq-condition-value">{weather.precipitationProbability}%</div>
         </div>
       </div>
     </section>

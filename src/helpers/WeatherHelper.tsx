@@ -1,5 +1,61 @@
 import { fetchWeatherApi } from 'openmeteo'
 
+// WMO Weather Code Constants
+export const RainCode = {
+	LightDrizzle: 51,
+	ModerateDrizzle: 53,
+	DenseDrizzle: 55,
+	SlightRain: 61,
+	ModerateRain: 63,
+	HeavyRain: 65,
+	SlightRainShower: 80,
+	ModerateRainShower: 81,
+	ViolentRainShower: 82,
+} as const
+
+export const SnowCode = {
+	SlightSnow: 71,
+	ModerateSnow: 73,
+	HeavySnow: 75,
+	SnowGrains: 77,
+	SlightSnowShower: 85,
+	HeavySnowShower: 86,
+} as const
+
+export const ThunderstormCode = {
+	Slight: 95,
+	SlightHail: 96,
+	HeavyHail: 99,
+} as const
+
+export const CloudCode = {
+	ClearSky: 0,
+	MainlyClear: 1,
+	PartlyCloudy: 2,
+	Overcast: 3,
+} as const
+
+export const FogCode = {
+	Foggy: 45,
+	DepositingRimeFog: 48,
+} as const
+
+// Type guards for weather codes
+export const isRain = (code: number): boolean =>
+	Object.values(RainCode).includes(code as never)
+
+export const isSnow = (code: number): boolean =>
+	Object.values(SnowCode).includes(code as never)
+
+export const isThunderstorm = (code: number): boolean =>
+	Object.values(ThunderstormCode).includes(code as never)
+
+export const isFog = (code: number): boolean =>
+	Object.values(FogCode).includes(code as never)
+
+export const isCloud = (code: number): boolean =>
+	Object.values(CloudCode).includes(code as never)
+
 // Current conditions
 export interface CurrentWeather {
   temperatureF: number
@@ -9,6 +65,7 @@ export interface CurrentWeather {
   time: Date
   humidity: number
   precipitationProbability?: number
+  apparentTemperatureF: number
 }
 
 // Hourly forecast item (12 items by default)
@@ -61,7 +118,7 @@ export const fetchWeather = async (
   const params = {
     latitude: lat,
     longitude: lon,
-    current: ['temperature_2m', 'is_day', 'weather_code', 'wind_speed_10m', 'relative_humidity_2m', 'precipitation_probability'],
+    current: ['temperature_2m', 'is_day', 'weather_code', 'wind_speed_10m', 'relative_humidity_2m', 'precipitation_probability', 'apparent_temperature'],
     temperature_unit: 'fahrenheit',
     wind_speed_unit: 'mph',
     timeformat: 'unixtime',
@@ -84,8 +141,9 @@ export const fetchWeather = async (
   const windVar = current.variables(3)
   const humidityVar = current.variables(4)
   const popVar = current.variables(5)
+  const apparentTempVar = current.variables(6)
 
-  if (!tempVar || !isDayVar || !codeVar || !windVar || !humidityVar) {
+  if (!tempVar || !isDayVar || !codeVar || !windVar || !humidityVar || !apparentTempVar) {
     throw new Error('Unexpected current weather payload')
   }
 
@@ -95,6 +153,7 @@ export const fetchWeather = async (
   const windSpeedMph = windVar.value()
   const humidity = humidityVar.value()
   const precipitationProbability = popVar?.value()
+  const apparentTemperatureF = apparentTempVar.value()
 
   return {
     temperatureF,
@@ -104,6 +163,7 @@ export const fetchWeather = async (
     time: new Date(timestampMs),
     humidity,
     precipitationProbability,
+    apparentTemperatureF,
   }
 }
 

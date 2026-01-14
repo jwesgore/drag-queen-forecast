@@ -11,6 +11,7 @@ import { Footer } from './components/Footer'
 // Shape of weather display data (transformed from API response)
 type WeatherData = {
   temperature: number
+  apparentTemperature: number
   windspeed: number
   weathercode: number
   time: string
@@ -62,6 +63,7 @@ function App() {
       const bundle = await fetchForecastBundle(lat, lon, 5, 12)
       setWeather({
         temperature: bundle.current.temperatureF,
+        apparentTemperature: bundle.current.apparentTemperatureF,
         windspeed: bundle.current.windSpeedMph,
         weathercode: bundle.current.weatherCode,
         time: bundle.current.time.toISOString(),
