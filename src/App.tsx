@@ -69,7 +69,7 @@ function App() {
     setLoading(true)
     setError(null)
     try {
-      const bundle = await fetchForecastBundle(lat, lon, 7, 12)
+      const bundle = await fetchForecastBundle(lat, lon, 8, 12)
       setWeather({
         temperature: bundle.current.temperatureF,
         apparentTemperature: bundle.current.apparentTemperatureF,

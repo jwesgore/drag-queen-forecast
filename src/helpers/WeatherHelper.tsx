@@ -279,7 +279,15 @@ export const fetchDailyForecast = async (
     }
   })
 
-  return items
+  // Filter out past dates - only show today and future
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  
+  return items.filter(item => {
+    const itemDate = new Date(item.date)
+    itemDate.setHours(0, 0, 0, 0)
+    return itemDate >= today
+  })
 }
 
 // Gets the weather description based on the provided weather code
