@@ -1,9 +1,5 @@
 import type { CurrentWeather, DailyForecastItem } from './WeatherHelper'
 import {
-	RainCode,
-	SnowCode,
-	ThunderstormCode,
-	CloudCode,
 	isRain,
 	isSnow,
 	isThunderstorm,
@@ -17,12 +13,12 @@ export const isStormy = (code: number) => [95, 96, 99].includes(code)
 
 // Map WMO weather codes to emoji
 export const getEmojiForCode = (code: number): string => {
-	if (isStormy(code)) return '⛈️'
-	if (isRainy(code)) return '🌧️'
-	if ([45, 48].includes(code)) return '🌫️'
-	if ([0, 1].includes(code)) return '☀️'
-	if ([2, 3].includes(code)) return '⛅'
-	if ([71, 73, 75, 77, 85, 86].includes(code)) return '❄️'
+	if (isThunderstorm(code)) return '⛈️'
+	if (isRain(code)) return '🌧️'
+	if (isFog(code)) return '🌫️'
+	if (isCloud(code) && code <= 1) return '☀️'
+	if (isCloud(code)) return '⛅'
+	if (isSnow(code)) return '❄️'
 	return '✨'
 }
 
@@ -41,8 +37,8 @@ export function getDragMessages(current: CurrentLike): string[] {
 	else msgs.push('Cute & Comfy, Queen')
 
 	// Weather conditions
-	if (isStormy(code)) msgs.push('Thunder & Drama Incoming')
-	else if (isRainy(code)) msgs.push("Humidity So High It's Giving Frizz")
+	if (isThunderstorm(code)) msgs.push('Thunder & Drama Incoming')
+	else if (isRain(code)) msgs.push("Humidity So High It's Giving Frizz")
 	else msgs.push('Flawless, No Rain — Werk!')
 
 	// Comfort level
@@ -50,18 +46,28 @@ export function getDragMessages(current: CurrentLike): string[] {
 	else msgs.push('Keep It Cute, Hydrate')
 
 	// Makeup advice
-	if (temp >= 92 || isRainy(code)) msgs.push('Makeup Meltdown Realness')
+	if (temp >= 92 || isRain(code)) msgs.push('Makeup Meltdown Realness')
 	else msgs.push('Beat Stays Put, Diva')
 	return msgs.slice(0, 4)
 }
 
-// Single phrase for daily forecast tile
+// Single phrase for daily forecast tile — max serve, short & shady
 export function getDailyPhrase(highF: number, code: number): string {
-	if (isStormy(code)) return 'Possible Thunder & Drama'
-	if (isRainy(code)) return "Humidity So High It's Giving Frizz"
-	if (highF >= 90) return 'Still a Sweaty Mess, Hunty'
-	if (highF <= 50) return 'Chilly Tea — Layer Up'
-	return 'Serving Pleasant Realness'
+  // Prioritize the drama queens first
+  if (isThunderstorm(code)) return "Thunder & Drama Alert, Hunty — Secure the Wig!";
+  if (isRain(code)) return "Rainy Mess Incoming, Waterproof the Beat";
+  
+  // Snow gets its own spotlight (common in MO winters)
+  if (isSnow(code)) return "Snowy Slay or Flurry Shade — Edges on Alert";
+  
+  // Temp tiers with escalating reads
+  if (highF >= 95) return "Scorching Day Ahead, Melted Wig Emergency";
+  if (highF >= 90) return "Still a Sweaty Serve, Glow-Up by Force";
+  if (highF >= 80) return "Summer Slay Vibes in Winter? Werk!";
+  if (highF >= 65) return "Pleasant Realness, Snatched & Comfortable";
+  if (highF >= 50) return "Chilly Tea, Layer Up Sis";
+  if (highF >= 40) return "Cold but Couture, Shiver in Sequins";
+  return "Polar Vortex Realness, Hypothermic Hunty — Bundle Up!";
 }
 
 // Helper to format daily item for UI (unused but available)
@@ -102,103 +108,76 @@ export function DraggifyNameOfDay(dayOfWeek: number): string {
 	}
 }
 
-// Get the temperature description in drag
 export function DraggifyTemperature(tempF: number): string {
-  if (tempF >= 105) return "Melted Wig Emergency"
-  if (tempF >= 100) return "Scorching Sashay"
-  if (tempF >= 95)  return "Sizzling Stiletto"
-  if (tempF >= 90)  return "Sweaty but Serving"
-  if (tempF >= 85)  return "Balmy Boa"
-  if (tempF >= 80)  return "Summer Slay"
-  if (tempF >= 75)  return "Perfectly Padded"
-  if (tempF >= 70)  return "Mild but Mugged"
-  if (tempF >= 65)  return "Light Jacket, Heavy Beat"
-  if (tempF >= 60)  return "Crisp Chiffon"
-  if (tempF >= 55)  return "Cool Contour"
-  if (tempF >= 50)  return "Foundation Cracking"
-  if (tempF >= 45)  return "Shivering in Sequins"
-  if (tempF >= 40)  return "Cold but Couture"
-  if (tempF >= 35)  return "Frosted Lashes"
-  if (tempF >= 30)  return "Icy Eleganza"
-  if (tempF >= 25)  return "Frozen but Fashion"
-  if (tempF >= 20)  return "Snowed-In Showgirl"
-  if (tempF >= 15)  return "Hypothermic Realness"
-  if (tempF >= 10)  return "Arctic Beat"
-  if (tempF >= 0)   return "Polar Vortex, Diva"
-  return "Freezing Feathered Fan"
+  if (tempF >= 105) return "Melted Wig Emergency, call the fire marshal sis!";
+  if (tempF >= 100) return "Scorching Sashay, the pavement is serving hot plate!";
+  if (tempF >= 95)  return "Sizzling Stiletto, heels melting face glistening!";
+  if (tempF >= 90)  return "Sweaty but SERVING, glow-up by force hunty!";
+  if (tempF >= 85)  return "Balmy Boa, constricting but make it sexy";
+  if (tempF >= 80)  return "Summer Slay szn, full beat no mercy";
+  if (tempF >= 75)  return "Perfectly Padded, curves popping no sweat";
+  if (tempF >= 70)  return "Mild but MUGGED, soft serve snatched edges";
+  if (tempF >= 65)  return "Light Jacket Heavy Beat, layers for the drama";
+  if (tempF >= 60)  return "Crisp Chiffon, breezy elegant unbothered";
+  if (tempF >= 55)  return "Cool Contour, cheekbones cutting glass";
+  if (tempF >= 50)  return "Foundation Cracking, time to set that bake queen";
+  if (tempF >= 45)  return "Shivering in Sequins, sparkle through the pain";
+  if (tempF >= 40)  return "Cold but Couture, serving frozen runway";
+  if (tempF >= 35)  return "Frosted Lashes, icy queen energy";
+  if (tempF >= 30)  return "Icy Eleganza, werk that chill diva";
+  if (tempF >= 25)  return "Frozen but Fashion, the tundra is your stage";
+  if (tempF >= 20)  return "Snowed-In Showgirl, trapped but still tipping";
+  if (tempF >= 15)  return "Hypothermic Realness, tuck and shiver hunty";
+  if (tempF >= 10)  return "Arctic Beat Drop, face frozen in fierce";
+  if (tempF >= 0)   return "Polar Vortex Diva, Mother Nature is reading";
+  return "Freezing Feathered Fan, cryogenic couture we are DONE";
 }
 
-export function DraggifyWeatherCode(code: number): string {
-	if (isThunderstorm(code)) return "Thunder & Drama, Hunty"
-	if (isSnow(code)) return getDragSnowDescription(code)
-	if (isRain(code)) return getDragRainDescription(code)
-	if (isFog(code)) return "Foggy Face Beat"
-	if (isCloud(code)) return getDragCloudDescription(code)
-	return "Mystery Mood"
+export function DraggifyCloud(code: number): string {
+  switch (code) {
+    case 1: return "Mainly Clear, just a little garnish on that perfect sky";
+    case 2: return "Partly Cloudy, serving scattered shade still fierce";
+    case 3: return "Overcast but Overqualified, the sky is giving full coverage foundation";
+    default: return "Cloudy with a Chance of Drama";
+  }
 }
 
-// Get drag description for rain intensity
-export function getDragRainDescription(code: number): string {
-	if ([RainCode.LightDrizzle, RainCode.ModerateDrizzle, RainCode.DenseDrizzle].includes(code as never)) {
-		return "Oh relax, it's just a drizzle"
-	}
-	if ([RainCode.SlightRain, RainCode.SlightRainShower].includes(code as never)) {
-		return "Waterproof makeup exists for a reason, darling"
-	}
-	if ([RainCode.ModerateRain, RainCode.ModerateRainShower].includes(code as never)) {
-		return "Runny makeup is a serve, sweetie"
-	}
-	if ([RainCode.HeavyRain, RainCode.ViolentRainShower].includes(code as never)) {
-		return "It's raining cats and dogs, hunty"
-	}
-	return "Rainy Day Makeup Breakdown"
+export function DraggifyDrizzle(code: number): string {
+  if (code === 51) return "Light Drizzle, just enough to test your setting spray";
+  if (code === 53) return "Moderate Drizzle, edges starting to revolt";
+  if (code === 55) return "Dense Drizzle, full frizz alert sis!";
+  if (code === 56) return "Light Freezing Drizzle, icy tea being spilled";
+  if (code === 57) return "Dense Freezing Drizzle, skating on thin ice literally";
+  return "Drizzle Drama, subtle but shady";
 }
 
-// Get drag description for snow intensity
-export function getDragSnowDescription(code: number): string {
-	if ([SnowCode.SlightSnow, SnowCode.SlightSnowShower].includes(code as never)) {
-		return "I've seen bigger dustings in the dressing room"
-	}
-	if (code === SnowCode.ModerateSnow) {
-		return "Leave the stiletto at home, it's a bit extra out there"
-	}
-	if ([SnowCode.HeavySnow, SnowCode.HeavySnowShower].includes(code as never)) {
-		return "Bust out the fur and boots, it's a snowstorm!"
-	}
-	if (code === SnowCode.SnowGrains) {
-		return "It's cute but it ain't sticking, sugar"
-	}
-	return "Snowy Slayage"
+export function DraggifyRain(code: number): string {
+  if (code === 61) return "Slight Rain, a gentle mist waterproof the mug";
+  if (code === 63) return "Moderate Rain, foundation sliding but we're still serving";
+  if (code === 65) return "Heavy Rain, full meltdown lashes lifting!";
+  if (code === 66) return "Light Freezing Rain, ice queen realness but slippery";
+  if (code === 67) return "Heavy Freezing Rain, frozen couture catastrophe";
+  if (code === 80) return "Slight Rain Showers, popup drama";
+  if (code === 81) return "Moderate Rain Showers, surprise wet tshirt contest";
+  if (code === 82) return "Violent Rain Showers, biblical downpour find shelter hunty!";
+  return "Rainy Day Makeup Breakdown, tuck the edges!";
 }
 
-// Get drag description for cloud coverage
-export function getDragCloudDescription(code: number): string {
-	switch (code) {
-		case CloudCode.ClearSky:
-			return "Clear Skies, Snatched Lashes"
-		case CloudCode.MainlyClear:
-			return "Mostly Clear, Major Slay"
-		case CloudCode.PartlyCloudy:
-			return "Partly Cloudy, Still Serving"
-		case CloudCode.Overcast:
-			return "Overcast but Overqualified"
-		default:
-			return "Cloudy with a Chance of Drama"
-	}
+export function DraggifySnow(code: number): string {
+  if (code === 71) return "Slight Snow Fall, light dusting barely enough to powder the face";
+  if (code === 73) return "Moderate Snow, soft fluffy and lowkey chaotic";
+  if (code === 75) return "Heavy Snow Fall, Siberian realness bust out the fur!";
+  if (code === 77) return "Snow Grains, cute but it ain't sticking sugar";
+  if (code === 85) return "Slight Snow Showers, flirty flurries";
+  if (code === 86) return "Heavy Snow Showers, full snowstorm slay secure the wig!";
+  return "Snowy Slayage, frozen fantasy on the runway";
 }
 
-// Get drag description for thunderstorm intensity
-export function getDragThunderstormDescription(code: number): string {
-	switch (code) {
-		case ThunderstormCode.Slight:
-			return "Rumbling for Attention"
-		case ThunderstormCode.SlightHail:
-			return "Hail, But Make It Fashion"
-		case ThunderstormCode.HeavyHail:
-			return "Category 5 Chaos"
-		default:
-			return "Atmospheric Menace"
-	}
+export function DraggifyThunderstorm(code: number): string {
+  if (code === 95) return "Thunderstorm Slight/Moderate, rumbling for attention diva!";
+  if (code === 96) return "Thunderstorm with Slight Hail, hail but make it fashion";
+  if (code === 99) return "Thunderstorm with Heavy Hail, Category 5 Chaos RUNNNNN!";
+  return "Atmospheric Menace, the gods are throwing full shade!";
 }
 
 export function DraggifyHumidity(humidity: number): string {
@@ -236,4 +215,28 @@ export function DraggifyWindSpeed(mph: number): string {
   if (mph >= 7)  return "Gentle breeze giving soft butch realness";
   if (mph >= 3)  return "A whisper of wind, barely enough to move the drama";
   return "Air is unemployed, not even a single strand is moving";
+}
+
+// Master function to get drag description for any weather code
+export function DraggifyWeatherCode(code: number): string {
+  // Thunderstorms (95-99)
+  if (isThunderstorm(code)) return DraggifyThunderstorm(code);
+  
+  // Rain (61-67, 80-82)
+  if (isRain(code)) return DraggifyRain(code);
+  
+  // Drizzle (51-57)
+  if ([51, 53, 55, 56, 57].includes(code)) return DraggifyDrizzle(code);
+  
+  // Snow (71-77, 85-86)
+  if (isSnow(code)) return DraggifySnow(code);
+  
+  // Fog (45, 48)
+  if (isFog(code)) return "Foggy Mystique, giving cryptic fashion fantasy";
+  
+  // Clouds (0-3)
+  if (isCloud(code)) return DraggifyCloud(code);
+  
+  // Default for unknown codes
+  return "Mother Nature is being MYSTERIOUS, hunty";
 }
