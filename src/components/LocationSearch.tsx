@@ -59,14 +59,28 @@ export function LocationSearch({
           </button>
         </div>
 
-        <input
-          type="text"
-          className="dq-search-input"
-          placeholder="Search for a city… (e.g. Denver, CO)"
-          value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
-          autoFocus
-        />
+        <div className="dq-search-wrapper">
+          <input
+            type="text"
+            className="dq-search-input"
+            placeholder="Search for a city… (e.g. Denver, CO)"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            autoFocus
+          />
+          {searchQuery && (
+            <button
+              className="dq-search-clear"
+              onClick={() => {
+                setSearchQuery('')
+                setResults([])
+              }}
+              aria-label="Clear search"
+            >
+              ✕
+            </button>
+          )}
+        </div>
 
         <div className="dq-results">
           {loading && (
