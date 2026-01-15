@@ -104,6 +104,31 @@
   color: #ffceed;
 }
 
+.dq-use-location-btn {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  background: linear-gradient(135deg, #7f1d9b, #ec4899);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.dq-use-location-btn:hover {
+  background: linear-gradient(135deg, #8a2be2, #ff4eb6);
+  border-color: #ffceed;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 .dq-results {
   display: flex;
   flex-direction: column;

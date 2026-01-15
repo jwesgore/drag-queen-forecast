@@ -122,6 +122,7 @@ function App() {
         isOpen={showLocationSearch} 
         onClose={() => setShowLocationSearch(false)}
         onSelectLocation={handleLocationSelect}
+        onUseMyLocation={getLocation}
       />
 
       {/* Loading indicator */}

@@ -201,34 +201,39 @@ export function getDragThunderstormDescription(code: number): string {
 	}
 }
 
-// Get drag description for humidity level
 export function DraggifyHumidity(humidity: number): string {
-	if (humidity >= 85) return "Frizz Apocalypse"
-	if (humidity >= 70) return "Humidity Said No"
-	if (humidity >= 60) return "Dewy but Dangerous"
-	if (humidity >= 45) return "Comfortably Snatched"
-	if (humidity >= 30) return "Matte & Mindful"
-	if (humidity >= 15) return "Dry but Defined"
-	return "Desert-Level Drama"
+  if (humidity >= 85) return "FRIZZ APOCALYPSE: the edges are GONE, sis";
+  if (humidity >= 75) return "Satan's Sauna, hair is filing for divorce";
+  if (humidity >= 68) return "Humidity said 'Not today, lace front!'";
+  if (humidity >= 60) return "Dewy, moist, and problematic";
+  if (humidity >= 50) return "Slightly snatched, mostly hydrated";
+  if (humidity >= 42) return "The sweet spot, hair is giving ✨life✨";
+  if (humidity >= 35) return "Matte finish, serving face, zero moisture mercy";
+  if (humidity >= 25) return "Crispy edges, dry drama, bone-straight realness";
+  if (humidity >= 15) return "Desert queen energy, the silk press is ETERNAL";
+  return "Cracked lips & Sahara snatch, we are PARCHED";
 }
 
-// Get drag description for precipitation probability
 export function DraggifyPrecipitation(percent: number): string {
-	if (percent >= 80) return "Bring the umbrella, diva"
-	if (percent >= 60) return "Probably gonna get wet"
-	if (percent >= 40) return "Questionable weather tea"
-	if (percent >= 20) return "Slight chance of drama"
-	if (percent > 0) return "Practically bone dry"
-	return "Zero chance, werk!"
+  if (percent >= 90) return "Biblically accurate downpour, FIND SHELTER, BITCH";
+  if (percent >= 80) return "Bring the clear umbrella, we're still serving looks in the flood";
+  if (percent >= 65) return "It's giving wet & messy, tuck extra tight";
+  if (percent >= 50) return "50/50 whether you're serving drowned rat or glowy dewy";
+  if (percent >= 35) return "Spicy drizzle, just enough to ruin the edges";
+  if (percent >= 20) return "Light tea, light rain, light shade";
+  if (percent >= 10) return "Miss thing might spit a little, carry a tiny fan";
+  if (percent > 0)  return "A single lonely drop, the drama is minimal";
+  return "Dry as the reading challenges, ZERO chance, werk!";
 }
 
-// Get drag description for wind speed
 export function DraggifyWindSpeed(mph: number): string {
-	if (mph >= 40) return "Wig-Snatching Gale"
-	if (mph >= 30) return "Hold Your Hat, Hunty"
-	if (mph >= 20) return "Breezy but Fierce"
-	if (mph >= 15) return "Gentle Wind, Major Slay"
-	if (mph >= 10) return "Light Breeze Realness"
-	if (mph >= 5) return "Barely a Flutter"
-	return "Still as a Statue"
+  if (mph >= 50) return "WIG-SNATCHING CATEGORY 5 HUNTY, RUNNNNN";
+  if (mph >= 40) return "Gale force giving full lace lift-off";
+  if (mph >= 32) return "Hold the edges, clutch the pearls, secure the perimeter!";
+  if (mph >= 25) return "Breezy enough to give you a free facelift";
+  if (mph >= 18) return "Windy but still serving, hair on demon time";
+  if (mph >= 12) return "Sassy little gusts, just enough to make you snatch";
+  if (mph >= 7)  return "Gentle breeze giving soft butch realness";
+  if (mph >= 3)  return "A whisper of wind, barely enough to move the drama";
+  return "Air is unemployed, not even a single strand is moving";
 }

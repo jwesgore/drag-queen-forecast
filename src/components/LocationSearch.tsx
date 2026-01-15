@@ -6,12 +6,14 @@ interface LocationSearchProps {
   isOpen: boolean
   onClose: () => void
   onSelectLocation: (lat: number, lon: number) => void
+  onUseMyLocation: () => void
 }
 
 export function LocationSearch({
   isOpen,
   onClose,
   onSelectLocation,
+  onUseMyLocation,
 }: LocationSearchProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [results, setResults] = useState<LocationResult[]>([])
@@ -81,6 +83,16 @@ export function LocationSearch({
             </button>
           )}
         </div>
+
+        <button 
+          className="dq-use-location-btn"
+          onClick={() => {
+            onUseMyLocation()
+            onClose()
+          }}
+        >
+          📍 Use My Location
+        </button>
 
         <div className="dq-results">
           {loading && (
