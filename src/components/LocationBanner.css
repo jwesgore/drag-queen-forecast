@@ -9,6 +9,20 @@
   gap: 0.5rem;
   white-space: nowrap;
   text-align: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.dq-location:hover {
+  background: #4a1f68;
+  border-color: #ffceed;
+}
+
+.dq-location:active {
+  transform: scale(0.98);
 }
 
 @media (max-width: 768px) {

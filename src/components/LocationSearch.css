@@ -1,0 +1,132 @@
+.dq-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dq-modal-content {
+  background: linear-gradient(135deg, rgba(127, 29, 155, 0.95), rgba(236, 72, 153, 0.95));
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.dq-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.dq-modal-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #ffceed;
+}
+
+.dq-modal-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.dq-modal-close:hover {
+  color: #ffceed;
+}
+
+.dq-search-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.dq-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.dq-search-input:focus {
+  outline: none;
+  border-color: #ffceed;
+}
+
+.dq-results {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dq-result-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dq-result-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffceed;
+  transform: translateX(4px);
+}
+
+.dq-result-name {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.dq-result-location {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.dq-loading-text,
+.dq-no-results,
+.dq-hint {
+  text-align: center;
+  padding: 1.5rem;
+  opacity: 0.7;
+}
+
+@media (max-width: 480px) {
+  .dq-modal-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .dq-modal-header h2 {
+    font-size: 1.5rem;
+  }
+}

@@ -4,6 +4,7 @@ import { fetchCityName as reverseGeocode, fetchForecastBundle, type DailyForecas
 import { getUserLocation } from './helpers/GeoLocationHelper'
 import { Header } from './components/Header'
 import { LocationBanner } from './components/LocationBanner'
+import { LocationSearch } from './components/LocationSearch'
 import { TodaysForecast } from './components/cards/TodaysForecast'
 import { ExtendedForecast } from './components/cards/ExtendedForecast'
 import { WeeklyForecast } from './pages/WeeklyForecast'
@@ -35,6 +36,8 @@ function App() {
   const [daily, setDaily] = useState<DailyForecastItem[]>([])
   // Current page
   const [currentPage, setCurrentPage] = useState<'home' | 'weekly' | 'about'>('home')
+  // Location search dialog
+  const [showLocationSearch, setShowLocationSearch] = useState(false)
 
   // Auto-load location on mount
   useEffect(() => {
@@ -62,6 +65,12 @@ function App() {
       const msg = err instanceof Error ? err.message : 'Failed to get location'
       setError(msg)
     }
+  }
+
+  // Handle location search dialog selection
+  const handleLocationSelect = async (lat: number, lon: number) => {
+    setLocation({ lat, long: lon })
+    await fetchCityName(lat, lon)
   }
 
   // Fetch current + 7-day forecast from Open-Meteo API
@@ -108,7 +117,12 @@ function App() {
         onAboutClick={() => setCurrentPage('about')}
         currentPage={currentPage}
       />
-      <LocationBanner cityName={cityName} lastUpdateTime={weather?.time} />
+      <LocationBanner cityName={cityName} lastUpdateTime={weather?.time} onLocationClick={() => setShowLocationSearch(true)} />
+      <LocationSearch 
+        isOpen={showLocationSearch} 
+        onClose={() => setShowLocationSearch(false)}
+        onSelectLocation={handleLocationSelect}
+      />
 
       {/* Loading indicator */}
       {loading && <div className="dq-loading">Fetching the shade…</div>}

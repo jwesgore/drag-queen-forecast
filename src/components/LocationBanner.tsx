@@ -4,12 +4,13 @@ import './LocationBanner.css'
 interface LocationBannerProps {
   cityName: string | null
   lastUpdateTime?: string
+  onLocationClick: () => void
 }
 
-export function LocationBanner({ cityName, lastUpdateTime }: LocationBannerProps) {
+export function LocationBanner({ cityName, lastUpdateTime, onLocationClick }: LocationBannerProps) {
   return (
-    <section className="dq-location">
+    <button className="dq-location" onClick={onLocationClick}>
       <strong>Your Location:</strong> {cityName ?? '—'} • Last updated: {formatUpdatedLabel(lastUpdateTime)}
-    </section>
+    </button>
   )
 }
