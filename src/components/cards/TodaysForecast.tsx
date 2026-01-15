@@ -1,4 +1,4 @@
-import { getEmojiForCode, DraggifyHumidity, DraggifyTemperature, DraggifyPrecipitation, DraggifyNameOfDay } from '../../helpers/DragHelper'
+import { getEmojiForCode, DraggifyHumidity, DraggifyTemperature, DraggifyPrecipitation, DraggifyWindSpeed, DraggifyNameOfDay } from '../../helpers/DragHelper'
 import './TodaysForecast.css'
 
 interface TodaysForecastProps {
@@ -8,6 +8,7 @@ interface TodaysForecastProps {
     weathercode: number
     humidity: number
     precipitationProbability: number
+    windspeed: number
     hourly: Array<{ 
       temperatureF: number
       weatherCode: number
@@ -33,7 +34,7 @@ export function TodaysForecast({ weather }: TodaysForecastProps) {
         </div>
       </div>
 
-      {/* Humidity and Precipitation cards */}
+      {/* Humidity, Precipitation, and Wind Speed cards */}
       <div className="dq-detail-cards">
         <div className="dq-detail-card">
           <span className="dq-detail-card-label">Moisture Levels</span>
@@ -44,6 +45,11 @@ export function TodaysForecast({ weather }: TodaysForecastProps) {
           <span className="dq-detail-card-label">Chance of Precip</span>
           <span className="dq-detail-card-value">{weather.precipitationProbability}%</span>
           <span className="dq-detail-card-desc">{DraggifyPrecipitation(weather.precipitationProbability)}</span>
+        </div>
+        <div className="dq-detail-card">
+          <span className="dq-detail-card-label">Wind Speed</span>
+          <span className="dq-detail-card-value">{Math.round(weather.windspeed)} mph</span>
+          <span className="dq-detail-card-desc">{DraggifyWindSpeed(weather.windspeed)}</span>
         </div>
       </div>
 

@@ -63,7 +63,7 @@ export function LocationSearch({
           <input
             type="text"
             className="dq-search-input"
-            placeholder="Search for a city… (e.g. Denver, CO)"
+            placeholder="Search... (e.g. New York, NY)"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             autoFocus

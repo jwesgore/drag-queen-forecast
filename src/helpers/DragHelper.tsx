@@ -221,3 +221,14 @@ export function DraggifyPrecipitation(percent: number): string {
 	if (percent > 0) return "Practically bone dry"
 	return "Zero chance, werk!"
 }
+
+// Get drag description for wind speed
+export function DraggifyWindSpeed(mph: number): string {
+	if (mph >= 40) return "Wig-Snatching Gale"
+	if (mph >= 30) return "Hold Your Hat, Hunty"
+	if (mph >= 20) return "Breezy but Fierce"
+	if (mph >= 15) return "Gentle Wind, Major Slay"
+	if (mph >= 10) return "Light Breeze Realness"
+	if (mph >= 5) return "Barely a Flutter"
+	return "Still as a Statue"
+}
