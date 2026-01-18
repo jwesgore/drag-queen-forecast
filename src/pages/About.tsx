@@ -1,4 +1,5 @@
 import './About.css'
+import { KoFiButton } from '../components/KoFiButton'
 
 export function About() {
   return (
@@ -20,8 +21,9 @@ export function About() {
             If you have any questions or suggestions feel free to email me at blah@blah.com.
           </p>
           <p>
-            If you would like to support my work, consider buying me a kofi at.
+            If you would like to support my work, consider buying me a coffee:
           </p>
+          <KoFiButton kofiId="C0C2NKLX" />
 
           <h3>Credits</h3>
           <p>
