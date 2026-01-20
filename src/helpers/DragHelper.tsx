@@ -89,7 +89,7 @@ export function formatUpdatedLabel(iso?: string): string {
 	const hrs = Math.floor(mins / 60)
 	const days = Math.floor(hrs / 24)
 	if (mins < 1) return 'Just now'
-	if (mins < 60) return `${mins} minute${mins === 1 ? '' : 's'} ago`
+	if (mins < 60) return `${mins} min${mins === 1 ? '' : 's'} ago`
 	if (hrs < 24) return `${hrs} hour${hrs === 1 ? '' : 's'} ago`
 	return `${days} day${days === 1 ? '' : 's'} ago`
 }
