@@ -1,4 +1,6 @@
-
+/* =========================
+   Base Styles
+   ========================= */
 .unit-toggle {
   display: flex;
   justify-content: space-evenly;
@@ -18,6 +20,9 @@
   font-weight: 600;
 }
 
+/* =========================
+   State Styles
+   ========================= */
 .unit-toggle:hover {
   background: #4a1f68;
   border-color: #ffceed;
@@ -27,25 +32,30 @@
   transform: scale(0.98);
 }
 
-
-.unit-toggle .divider {
-  margin: 0 0.5rem;
-  color: #ffceed;
-}
-
-
-.unit-toggle span {
-  transition: color 0.2s, text-shadow 0.2s;
-}
-
-
 .unit-toggle .active {
   color: #ffceed;
   text-shadow: 0 1px 6px #fff, 0 0 2px #e6007a;
 }
 
+/* =========================
+   Element Styles
+   ========================= */
+.unit-toggle .divider {
+  margin: 0 0.5rem;
+  color: #ffceed;
+}
 
+.unit-toggle span {
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+/* =========================
+   Responsive
+   ========================= */
 @media (max-width: 768px) {
+  .unit-toggle .divider {
+    margin: 0 0.25rem;
+  }
   .unit-toggle {
     padding: 0.6rem 0.8rem;
     font-size: 0.9rem;

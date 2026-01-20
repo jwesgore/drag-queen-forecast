@@ -34,10 +34,6 @@ export function WeeklyForecast({ daily, unit }: WeeklyForecastProps) {
                 <span className="dq-weekly-divider">/</span>
                 <span className="dq-weekly-low">{low}{tempSymbol}</span>
               </div>
-              <div className="dq-weekly-details">
-                <div className="dq-weekly-precip">💧 {Math.round(day.precipitationProbability)}%</div>
-                <div className="dq-weekly-humidity">💦 {Math.round(day.humidity)}%</div>
-              </div>
             </div>
           );
         })}
