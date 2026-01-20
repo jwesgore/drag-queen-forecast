@@ -10,7 +10,7 @@ interface LocationBannerProps {
 export function LocationBanner({ cityName, lastUpdateTime, onLocationClick }: LocationBannerProps) {
   return (
     <button className="dq-location" onClick={onLocationClick}>
-      <strong>Your Location:</strong> {cityName ?? '—'} • Last updated: {formatUpdatedLabel(lastUpdateTime)}
+      <strong>Location:</strong> {cityName ?? '—'} • Updated: {formatUpdatedLabel(lastUpdateTime)}
     </button>
   )
 }

@@ -1,4 +1,8 @@
-/* Drag Queen Forecast Theme - Global Styles */
+
+/* =========================
+   Layout & Structure
+   ========================= */
+
 #root {
   max-width: 1000px;
   margin: 0 auto;
@@ -13,13 +17,26 @@
   gap: 1.5rem;
 }
 
-.dq-loading { color: #fff; text-align: center; }
+.dp-tools {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.dp-tools > *:first-child {
+  flex: 1;
+}
 
 .dq-weekly-page {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
+
+/* =========================
+   Typography & Theme
+   ========================= */
 
 .dq-weekly-page h2 {
   color: #ffceed;
@@ -29,14 +46,29 @@
   margin: 1rem 0;
 }
 
-/* Page backdrop */
-body { background: radial-gradient(1200px 600px at 20% -10%, #8a2be2 20%, transparent 60%), radial-gradient(1200px 600px at 100% 0%, #ff4eb6 10%, transparent 60%), #2b0a3d; }
+.dq-loading {
+  color: #fff;
+  text-align: center;
+}
+
+/* =========================
+   Page Backdrop
+   ========================= */
+
+body {
+  background: radial-gradient(1200px 600px at 20% -10%, #8a2be2 20%, transparent 60%),
+    radial-gradient(1200px 600px at 100% 0%, #ff4eb6 10%, transparent 60%),
+    #2b0a3d;
+}
+
+/* =========================
+   Responsive
+   ========================= */
 
 @media (max-width: 768px) {
   #root {
     padding: 0.75rem;
   }
-  
   .dq-page {
     gap: 0.75rem;
   }
@@ -46,7 +78,6 @@ body { background: radial-gradient(1200px 600px at 20% -10%, #8a2be2 20%, transp
   #root {
     padding: 0.5rem;
   }
-  
   .dq-page {
     gap: 0.5rem;
   }

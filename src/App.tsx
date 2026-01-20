@@ -4,6 +4,7 @@ import { fetchCityName as reverseGeocode, fetchForecastBundle, type DailyForecas
 import { getUserLocation } from './helpers/GeoLocationHelper'
 import { Header } from './components/Header'
 import { LocationBanner } from './components/LocationBanner'
+import UnitToggle from './components/UnitToggle'
 import { LocationSearch } from './components/LocationSearch'
 import { TodaysForecast } from './components/cards/TodaysForecast'
 import { ExtendedForecast } from './components/cards/ExtendedForecast'
@@ -24,6 +25,8 @@ type WeatherData = {
 }
 
 function App() {
+    // Temperature unit state
+    const [unit, setUnit] = useState<'F' | 'C'>('F')
   // User's current coordinates
   const [location, setLocation] = useState<{ lat: number; long: number } | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -117,7 +120,10 @@ function App() {
         onAboutClick={() => setCurrentPage('about')}
         currentPage={currentPage}
       />
-      <LocationBanner cityName={cityName} lastUpdateTime={weather?.time} onLocationClick={() => setShowLocationSearch(true)} />
+      <div className="dp-tools">
+        <LocationBanner cityName={cityName} lastUpdateTime={weather?.time} onLocationClick={() => setShowLocationSearch(true)} />
+        <UnitToggle unit={unit} onToggle={setUnit} />
+      </div>
       <LocationSearch 
         isOpen={showLocationSearch} 
         onClose={() => setShowLocationSearch(false)}
@@ -130,14 +136,14 @@ function App() {
 
       {currentPage === 'home' && (
         <>
-          {weather && !loading && <TodaysForecast weather={weather} />}
+          {weather && !loading && <TodaysForecast weather={weather} unit={unit} />}
           {/* 3-day forecast tiles */}
-          <ExtendedForecast daily={daily} />
+          <ExtendedForecast daily={daily} unit={unit} />
         </>
       )}
 
       {currentPage === 'weekly' && (
-        <WeeklyForecast daily={daily} />
+        <WeeklyForecast daily={daily} unit={unit} />
       )}
 
       {currentPage === 'about' && (
