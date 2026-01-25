@@ -18,13 +18,12 @@ export function About() {
 
           <h3>Get In Touch</h3>
           <p>
-            If you have any questions or suggestions feel free to email me at blah@blah.com.
+            If you have any questions or suggestions feel free to email me at <a href="mailto:jwesdev@gmail.com">jwesdev@gmail.com</a>
           </p>
           <p>
-            If you would like to support my work, consider buying me a coffee:
+            If you would like to support my work, consider buying me a coffee.
           </p>
           <KoFiButton kofiId="C0C2NKLX" />
-
           <h3>Credits</h3>
           <p>
             Weather data provided by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo API</a>

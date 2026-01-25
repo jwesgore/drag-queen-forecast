@@ -1,15 +1,11 @@
+/* =========================
+   Layout Containers
+   ========================= */
+
 .dq-weekly {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-}
-
-.dq-weekly-title {
-  color: #ffceed;
-  font-weight: 900;
-  font-size: 2rem;
-  text-align: center;
-  margin: 0;
 }
 
 .dq-weekly-grid {
@@ -18,46 +14,85 @@
   gap: 1rem;
 }
 
+
+/* =========================
+   Title
+   ========================= */
+
+.dq-weekly-title {
+  margin: 0;
+  text-align: center;
+
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ffceed;
+}
+
+
+/* =========================
+   Card
+   ========================= */
+
 .dq-weekly-card {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  background: linear-gradient(135deg, #7f1d9b, #ec4899);
-  color: #fff;
+
   padding: 1rem 1.5rem;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+
+  color: #fff;
+  background: linear-gradient(135deg, #7f1d9b, #ec4899);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
+
+/* =========================
+   Date & Day
+   ========================= */
+
 .dq-weekly-date {
-  font-size: 1.1rem;
-  opacity: 0.9;
   min-width: 80px;
   flex-shrink: 0;
+
+  font-size: 1.1rem;
+  opacity: 0.9;
 }
 
 .dq-weekly-day {
-  font-size: 1.2rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   flex: 1;
   min-width: 120px;
+
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
+
+/* =========================
+   Weather Icon
+   ========================= */
+
 .dq-weekly-emoji {
-  font-size: 2rem;
   flex-shrink: 0;
+  font-size: 2rem;
 }
+
+
+/* =========================
+   Temperature
+   ========================= */
 
 .dq-weekly-temps {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-shrink: 0;
+
   font-size: 1.5rem;
   font-weight: 700;
-  flex-shrink: 0;
 }
 
 .dq-weekly-high {
@@ -72,14 +107,20 @@
   opacity: 0.5;
 }
 
+
+/* =========================
+   Extra Details
+   ========================= */
+
 .dq-weekly-details {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  font-size: 0.85rem;
-  opacity: 0.9;
   flex-shrink: 0;
   min-width: 70px;
+
+  font-size: 0.85rem;
+  opacity: 0.9;
 }
 
 .dq-weekly-precip,
@@ -89,14 +130,14 @@
   gap: 0.25rem;
 }
 
+
+/* =========================
+   Responsive — Tablet
+   ========================= */
+
 @media (max-width: 768px) {
   .dq-weekly-title {
     font-size: 1.6rem;
-  }
-
-  .dq-weekly-grid {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 0.8rem;
   }
 
   .dq-weekly-card {
@@ -121,26 +162,26 @@
   }
 }
 
+
+/* =========================
+   Responsive — Mobile
+   ========================= */
+
 @media (max-width: 480px) {
   .dq-weekly-title {
     font-size: 1.4rem;
   }
 
-  .dq-weekly-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
   .dq-weekly-card {
-    padding: 1rem;
     flex-direction: row;
     justify-content: space-between;
+    padding: 1rem;
   }
 
   .dq-weekly-day {
-    font-size: 0.95rem;
     flex: 1;
     text-align: left;
+    font-size: 0.95rem;
   }
 
   .dq-weekly-date {
