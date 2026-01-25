@@ -1,20 +1,10 @@
-.dq-today h2 { text-align: center; color: #ffceed; font-weight: 900; }
-
-/* Current temperature card */
-.dq-temp-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  background: linear-gradient(135deg, #7f1d9b, #ec4899);
-  color: #fff;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  margin-bottom: 1.5rem;
-  width: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
+/* ===================== */
+/* Today Title           */
+/* ===================== */
+.dq-today h2 {
+  color: #ffceed;
+  font-weight: 900;
+  text-align: center;
 }
 
 .dq-temp-left {
@@ -25,15 +15,20 @@
   flex: 1;
 }
 
-.dq-temp-greeting { 
-  font-size: 1rem; 
-  font-weight: 700; 
+.dq-temp-greeting {
+  font-size: 1rem;
+  font-weight: 700;
   opacity: 0.95;
   text-align: center;
 }
 
-.dq-temp-emoji { font-size: 3.5rem; }
-.dq-temp-display { font-size: 3rem; font-weight: 900; }
+.dq-temp-emoji {
+  font-size: 3.5rem;
+}
+.dq-temp-display {
+  font-size: 3rem;
+  font-weight: 900;
+}
 .dq-temp-feels-like {
   display: flex;
   flex-direction: column;
@@ -53,6 +48,25 @@
   text-align: center;
 }
 
+/* ===================== */
+/* Current Temperature Card */
+/* ===================== */
+.dq-temp-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: linear-gradient(135deg, #7f1d9b, #ec4899);
+  color: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  margin-bottom: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: center;
+}
 /* Detail cards grid */
 .dq-detail-cards {
   display: grid;
@@ -74,58 +88,20 @@
   border-radius: 12px;
   text-align: center;
 }
-
 .dq-detail-card-label {
   font-size: 0.95rem;
   opacity: 0.9;
   font-weight: 600;
 }
-
 .dq-detail-card-value {
   font-size: 2rem;
   font-weight: 900;
 }
-
 .dq-detail-card-desc {
   font-size: 0.8rem;
   font-style: italic;
   opacity: 0.8;
 }
-
-/* Hourly forecast section */
-.dq-hourly-section h3 { color: #ffceed; font-weight: 800; margin-bottom: 0.75rem; }
-.dq-hourly-scroll {
-  display: flex;
-  gap: 0.75rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  scroll-behavior: smooth;
-}
-.dq-hourly-scroll::-webkit-scrollbar { height: 6px; }
-.dq-hourly-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 3px; }
-.dq-hourly-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 3px; }
-.dq-hourly-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5); }
-
-.dq-hourly-card {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background: rgba(127, 29, 155, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 0.75rem 0.6rem;
-  border-radius: 10px;
-  min-width: 80px;
-  text-align: center;
-}
-.dq-hourly-time { font-size: 0.75rem; font-weight: 700; opacity: 0.85; }
-.dq-hourly-emoji { font-size: 1.5rem; }
-.dq-hourly-bottom { display: flex; align-items: center; gap: 0.5rem; }
-.dq-hourly-temp { font-size: 1rem; font-weight: 800; }
-.dq-hourly-precip { font-size: 0.75rem; opacity: 0.85; color: #b3e5fc; }
 
 /* Conditions grid */
 .dq-conditions-grid {
@@ -144,6 +120,10 @@
 }
 .dq-condition-label { font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.5rem; }
 .dq-condition-value { font-size: 1.8rem; font-weight: 900; }
+
+/* ===================== */
+/* Responsive: <= 768px  */
+/* ===================== */
 
 @media (max-width: 768px) {
   .dq-today h2 {
@@ -205,28 +185,7 @@
     font-size: 0.75rem;
   }
   
-  .dq-hourly-section h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .dq-hourly-card {
-    min-width: 75px;
-    padding: 0.8rem 0.6rem;
-    gap: 0.5rem;
-  }
-  
-  .dq-hourly-time {
-    font-size: 0.8rem;
-  }
-  
-  .dq-hourly-emoji {
-    font-size: 1.8rem;
-  }
-  
-  .dq-hourly-temp {
-    font-size: 1rem;
-  }
+
   
   .dq-conditions-grid {
     grid-template-columns: 1fr;
@@ -247,102 +206,66 @@
   }
 }
 
+/* ===================== */
+/* Responsive: <= 480px  */
+/* ===================== */
 @media (max-width: 480px) {
   .dq-today h2 {
     font-size: 1.3rem;
     margin-bottom: 0.75rem;
   }
-  
   .dq-temp-card {
-    padding: 1.2rem;
     gap: 1.2rem;
     margin-bottom: 0.75rem;
+    padding: 1.2rem;
   }
-  
   .dq-temp-left {
     gap: 1rem;
   }
-  
   .dq-temp-greeting {
     font-size: 1rem;
   }
-  
   .dq-temp-emoji {
     font-size: 2.5rem;
   }
-  
   .dq-temp-display {
     font-size: 1.9rem;
   }
-  
   .dq-temp-feels-label {
     font-size: 0.9rem;
   }
-  
   .dq-temp-feels-desc {
     font-size: 0.8rem;
   }
-  
   .dq-detail-cards {
-    grid-template-columns: 1fr;
     gap: 0.8rem;
+    grid-template-columns: 1fr;
     margin-bottom: 0.75rem;
   }
-  
   .dq-detail-card {
-    padding: 1rem;
     gap: 0.3rem;
+    padding: 1rem;
   }
-  
   .dq-detail-card-label {
     font-size: 0.85rem;
   }
-  
   .dq-detail-card-value {
     font-size: 1.4rem;
   }
-  
   .dq-detail-card-desc {
     font-size: 0.7rem;
   }
-  
-  .dq-hourly-section h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .dq-hourly-card {
-    min-width: 65px;
-    padding: 0.7rem 0.5rem;
-    gap: 0.4rem;
-  }
-  
-  .dq-hourly-time {
-    font-size: 0.7rem;
-  }
-  
-  .dq-hourly-emoji {
-    font-size: 1.5rem;
-  }
-  
-  .dq-hourly-temp {
-    font-size: 0.9rem;
-  }
-  
   .dq-conditions-grid {
-    grid-template-columns: 1fr;
     gap: 0.6rem;
+    grid-template-columns: 1fr;
     margin-top: 0.75rem;
   }
-  
   .dq-condition-box {
     padding: 0.8rem;
   }
-  
   .dq-condition-label {
     font-size: 0.85rem;
   }
-  
   .dq-condition-value {
     font-size: 1.3rem;
   }

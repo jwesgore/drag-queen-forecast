@@ -2,6 +2,8 @@ import { getEmojiForCode, DraggifyHumidity, DraggifyTemperature, DraggifyPrecipi
 import { farToCel, mphToKph } from '../../helpers/UnitConversion'
 import './TodaysForecast.css'
 
+import { HourlyForecast } from './HourlyForecast';
+
 interface TodaysForecastProps {
   weather: {
     temperature: number
@@ -61,28 +63,7 @@ export function TodaysForecast({ weather, unit }: TodaysForecastProps) {
       </div>
 
       {/* 12-hour forecast cards */}
-      <div className="dq-hourly-section">
-        <h3>Next 12 Hours</h3>
-        <div className="dq-hourly-scroll">
-          {weather.hourly.map((hour, i) => {
-            const hourTemp = unit === 'F' ? Math.round(hour.temperatureF) : Math.round(farToCel(hour.temperatureF));
-            return (
-              <div className="dq-hourly-card" key={`h-${i}`}>
-                <div className="dq-hourly-time">
-                  {hour.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </div>
-                <div className="dq-hourly-emoji">{getEmojiForCode(hour.weatherCode)}</div>
-                <div className="dq-hourly-bottom">
-                  <div className="dq-hourly-temp">{hourTemp}{tempSymbol}</div>
-                  {hour.precipitationProbability !== undefined && (
-                    <div className="dq-hourly-precip">💧 {Math.round(hour.precipitationProbability)}%</div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <HourlyForecast hourly={weather.hourly} unit={unit} tempSymbol={tempSymbol} />
     </section>
   )
 }
