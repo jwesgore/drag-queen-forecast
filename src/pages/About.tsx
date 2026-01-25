@@ -19,8 +19,7 @@ export function About() {
           <h3>Get In Touch</h3>
           <p>
             If you have any questions or suggestions feel free to email me at <a href="mailto:jwesdev@gmail.com">jwesdev@gmail.com</a>
-          </p>
-          <p>
+            <br />
             If you would like to support my work, consider buying me a coffee.
           </p>
           <KoFiButton kofiId="C0C2NKLX" />
