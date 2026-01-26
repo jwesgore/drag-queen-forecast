@@ -218,7 +218,7 @@ export function DraggifyPrecipitation(percent: number): string {
   if (percent >= 20) return "Light tea, light rain, light shade";
   if (percent >= 10) return "Miss thing might spit a little, carry a tiny fan";
   if (percent > 0)  return "A single lonely drop, the drama is minimal";
-  return "Dry as the reading challenges, ZERO chance, werk!";
+  return "ZERO chance, WERK";
 }
 
 export function DraggifyWindSpeed(mph: number): string {

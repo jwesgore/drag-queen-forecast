@@ -34,7 +34,7 @@
 
 .dq-modal-header h2 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 2.07rem;
   color: #ffceed;
 }
 
@@ -42,7 +42,7 @@
   background: none;
   border: none;
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.73rem;
   cursor: pointer;
   padding: 0;
   width: 30px;
@@ -65,7 +65,7 @@
 .dq-search-input {
   width: 100%;
   padding: 0.75rem 2.5rem 0.75rem 1rem;
-  font-size: 1rem;
+  font-size: 1.15rem;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.2);
@@ -91,7 +91,7 @@
   background: none;
   border: none;
   color: rgba(255, 255, 255, 0.6);
-  font-size: 1.2rem;
+  font-size: 1.38rem;
   cursor: pointer;
   padding: 0.5rem;
   display: flex;
@@ -111,7 +111,7 @@
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 1.04rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -154,12 +154,12 @@
 
 .dq-result-name {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.15rem;
   margin-bottom: 0.25rem;
 }
 
 .dq-result-location {
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   opacity: 0.8;
 }
 
@@ -178,6 +178,6 @@
   }
 
   .dq-modal-header h2 {
-    font-size: 1.5rem;
+    font-size: 1.73rem;
   }
 }

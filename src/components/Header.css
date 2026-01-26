@@ -15,11 +15,11 @@
 .dq-brand { display: flex; align-items: baseline; gap: 1rem; flex: 1; }
 .dq-title { 
   font-family: "Righteous", sans-serif; 
-  font-size: 2.6rem; 
+  font-size: 3.00rem; 
   letter-spacing: 1px; 
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
-.dq-sub { font-weight: 900; font-size: 1.6rem; }
+.dq-sub { font-weight: 900; font-size: 1.84rem; }
 
 /* Hamburger menu button */
 .dq-hamburger {
@@ -46,7 +46,7 @@
   padding: 0.5rem 0.9rem; 
   border-radius: 999px; 
   font-weight: 600; 
-  font-size: 0.9rem; 
+  font-size: 1.04rem; 
   border: none; 
   color: #fff; 
   cursor: pointer; 
@@ -110,11 +110,11 @@
   }
   
   .dq-title {
-    font-size: 1.8rem;
+    font-size: 2.07rem;
   }
   
   .dq-sub {
-    font-size: 1.1rem;
+    font-size: 1.27rem;
   }
   
   .dq-nav {
@@ -147,7 +147,7 @@
   
   .dq-tab {
     padding: 0.6rem 1rem;
-    font-size: 0.95rem;
+    font-size: 1.09rem;
     width: 100%;
     text-align: left;
     margin-left: 0;
@@ -156,7 +156,7 @@
   
   .dq-werk {
     padding: 0.6rem 1.2rem;
-    font-size: 0.95rem;
+    font-size: 1.09rem;
     margin-left: 0;
     width: 100%;
     display: block;
@@ -178,11 +178,11 @@
   }
   
   .dq-title {
-    font-size: 1.6rem;
+    font-size: 1.84rem;
   }
   
   .dq-sub {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
   
   .dq-nav {
@@ -215,7 +215,7 @@
   
   .dq-tab {
     padding: 0.5rem 0.8rem;
-    font-size: 0.85rem;
+    font-size: 0.98rem;
     width: 100%;
     text-align: left;
     margin-left: 0;
@@ -224,7 +224,7 @@
   
   .dq-werk {
     padding: 0.5rem 1rem;
-    font-size: 0.85rem;
+    font-size: 0.98rem;
     margin-left: 0;
     width: 100%;
     display: block;

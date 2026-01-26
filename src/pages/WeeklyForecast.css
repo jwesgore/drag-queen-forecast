@@ -23,9 +23,12 @@
   margin: 0;
   text-align: center;
 
-  font-size: 2rem;
+  font-size: 2.30rem;
   font-weight: 900;
   color: #ffceed;
+}
+.dq-weekly-title {
+  /* bumped size for pixel font */
 }
 
 
@@ -56,7 +59,7 @@
   min-width: 80px;
   flex-shrink: 0;
 
-  font-size: 1.1rem;
+  font-size: 1.27rem;
   opacity: 0.9;
 }
 
@@ -64,7 +67,7 @@
   flex: 1 1 auto;
   min-width: 160px;
 
-  font-size: 1.2rem;
+  font-size: 1.38rem;
   font-weight: 800;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -80,7 +83,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 2.30rem;
   width: 64px;
 }
 
@@ -99,7 +102,7 @@
   justify-content: flex-end;
   text-align: right;
 
-  font-size: 1.5rem;
+  font-size: 1.73rem;
   font-weight: 700;
 }
 
@@ -121,24 +124,24 @@
 
 @media (max-width: 768px) {
   .dq-weekly-title {
-    font-size: 1.6rem;
+    font-size: 1.84rem;
   }
 
   .dq-weekly-day {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
 
   .dq-weekly-date {
-    font-size: 0.8rem;
+    font-size: 0.92rem;
   }
 
   .dq-weekly-emoji {
-    font-size: 2.5rem;
+    font-size: 2.88rem;
     width: 64px;
   }
 
   .dq-weekly-temps {
-    font-size: 1.3rem;  
+    font-size: 1.50rem;  
     width: 8rem;
   }
 }
@@ -150,7 +153,7 @@
 
 @media (max-width: 480px) {
   .dq-weekly-title {
-    font-size: 1.4rem;
+    font-size: 1.61rem;
   }
 
   .dq-weekly-card {
@@ -165,19 +168,19 @@
   .dq-weekly-day {
     flex: 1;
     text-align: left;
-    font-size: 0.95rem;
+    font-size: 1.09rem;
   }
 
   .dq-weekly-emoji {
     flex: 2;
-    font-size: 2rem;
+    font-size: 2.30rem;
     margin: 0;
     width: 56px;
   }
 
   .dq-weekly-temps {
     flex: 3;
-    font-size: 1.2rem;
+    font-size: 1.38rem;
     width: auto;
   }
 }

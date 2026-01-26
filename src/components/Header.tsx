@@ -47,7 +47,6 @@ export function Header({ onWerkClick, onHomeClick, onWeeklyClick, onAboutClick, 
       <nav className={`dq-nav ${menuOpen ? 'open' : ''}`}>
         <button className={`dq-tab ${currentPage === 'home' ? 'active' : ''}`} onClick={handleHomeClick}>Home</button>
         <button className={`dq-tab ${currentPage === 'weekly' ? 'active' : ''}`} onClick={handleWeeklyClick}>Weekly Shade</button>
-        <span className="dq-tab">Fashion Tips</span>
         <button className={`dq-tab ${currentPage === 'about' ? 'active' : ''}`} onClick={handleAboutClick}>What's The Tea</button>
         <button className="dq-werk" onClick={handleWerkClick}>WERK</button>
       </nav>

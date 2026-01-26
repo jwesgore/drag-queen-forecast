@@ -8,7 +8,7 @@
 
 @media (max-width: 768px) {
   .dq-extended h2 {
-    font-size: 1.3rem;
+    font-size: 1.50rem;
   }
   
   .dq-forecast-grid {
@@ -19,7 +19,7 @@
 
 @media (max-width: 480px) {
   .dq-extended h2 {
-    font-size: 1.1rem;
+    font-size: 1.27rem;
   }
   
   .dq-forecast-grid {
@@ -40,16 +40,16 @@
 }
 .dq-forecast-day { font-weight: 900; padding: 0.6rem 0.9rem; background: rgba(75,0,110,0.1); border-top-left-radius: 12px; border-top-right-radius: 12px; text-align: center; }
 .dq-forecast-body { padding: 0.9rem; display: flex; flex-direction: column; gap: 0.4rem; justify-items: center; text-align: center; flex: 1; }
-.dq-forecast-emoji { font-size: 1.6rem; }
+.dq-forecast-emoji { font-size: 1.84rem; }
 .dq-forecast-text { font-weight: 800; text-align: center; }
 .dq-forecast-temps { font-weight: 700; opacity: 0.8; text-align: center; }
-.dq-forecast-detail { font-size: 0.85rem; font-weight: 600; text-align: center; }
-.dq-forecast-footer { font-size: 0.75rem; font-style: italic; opacity: 0.8; text-align: center; margin-top: auto; }
+.dq-forecast-detail { font-size: 0.98rem; font-weight: 600; text-align: center; }
+.dq-forecast-footer { font-size: 0.86rem; font-style: italic; opacity: 0.8; text-align: center; margin-top: auto; }
 
 @media (max-width: 768px) {
   .dq-forecast-day {
     padding: 0.5rem 0.6rem;
-    font-size: 0.95rem;
+    font-size: 1.09rem;
   }
   
   .dq-forecast-body {
@@ -58,30 +58,30 @@
   }
   
   .dq-forecast-emoji {
-    font-size: 1.3rem;
+    font-size: 1.50rem;
   }
   
   .dq-forecast-text {
-    font-size: 0.85rem;
+    font-size: 0.98rem;
   }
   
   .dq-forecast-temps {
-    font-size: 0.8rem;
+    font-size: 0.92rem;
   }
   
   .dq-forecast-detail {
-    font-size: 0.7rem;
+    font-size: 0.81rem;
   }
   
   .dq-forecast-footer {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
   }
 }
 
 @media (max-width: 480px) {
   .dq-forecast-day {
     padding: 0.4rem 0.5rem;
-    font-size: 0.85rem;
+    font-size: 0.98rem;
   }
   
   .dq-forecast-body {
@@ -90,22 +90,22 @@
   }
   
   .dq-forecast-emoji {
-    font-size: 1.1rem;
+    font-size: 1.27rem;
   }
   
   .dq-forecast-text {
-    font-size: 0.75rem;
+    font-size: 0.86rem;
   }
   
   .dq-forecast-temps {
-    font-size: 0.7rem;
+    font-size: 0.81rem;
   }
   
   .dq-forecast-detail {
-    font-size: 0.6rem;
+    font-size: 0.69rem;
   }
   
   .dq-forecast-footer {
-    font-size: 0.55rem;
+    font-size: 0.63rem;
   }
 }

@@ -16,14 +16,14 @@
 }
 
 .dq-temp-greeting {
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   opacity: 0.95;
   text-align: center;
 }
 
 .dq-temp-emoji {
-  font-size: 3.5rem;
+  font-size: 4.03rem;
 }
 /* make today's main icon larger than standard icons */
 .dq-temp-emoji img.dq-weather-icon {
@@ -31,7 +31,7 @@
   height: 96px;
 }
 .dq-temp-display {
-  font-size: 3rem;
+  font-size: 3.45rem;
   font-weight: 900;
 }
 .dq-temp-feels-like {
@@ -42,12 +42,12 @@
   margin-top: 0.5rem;
 }
 .dq-temp-feels-label {
-  font-size: 0.9rem;
+  font-size: 1.04rem;
   font-weight: 600;
   opacity: 0.95;
 }
 .dq-temp-feels-desc {
-  font-size: 0.75rem;
+  font-size: 0.86rem;
   font-style: italic;
   opacity: 0.75;
   text-align: center;
@@ -94,16 +94,16 @@
   text-align: center;
 }
 .dq-detail-card-label {
-  font-size: 0.95rem;
+  font-size: 1.09rem;
   opacity: 0.9;
   font-weight: 600;
 }
 .dq-detail-card-value {
-  font-size: 2rem;
+  font-size: 2.30rem;
   font-weight: 900;
 }
 .dq-detail-card-desc {
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   font-style: italic;
   opacity: 0.8;
 }
@@ -123,8 +123,8 @@
   border-radius: 12px;
   text-align: center;
 }
-.dq-condition-label { font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.5rem; }
-.dq-condition-value { font-size: 1.8rem; font-weight: 900; }
+.dq-condition-label { font-size: 1.04rem; opacity: 0.8; margin-bottom: 0.5rem; }
+.dq-condition-value { font-size: 2.07rem; font-weight: 900; }
 
 /* ===================== */
 /* Responsive: <= 768px  */
@@ -132,7 +132,7 @@
 
 @media (max-width: 768px) {
   .dq-today h2 {
-    font-size: 1.5rem;
+    font-size: 1.73rem;
     margin-bottom: 1rem;
   }
   
@@ -148,23 +148,23 @@
   }
   
   .dq-temp-greeting {
-    font-size: 1.2rem;
+    font-size: 1.38rem;
   }
   
   .dq-temp-emoji {
-    font-size: 3rem;
+    font-size: 3.45rem;
   }
   
   .dq-temp-display {
-    font-size: 2.2rem;
+    font-size: 2.53rem;
   }
   
   .dq-temp-feels-label {
-    font-size: 0.95rem;
+    font-size: 1.09rem;
   }
   
   .dq-temp-feels-desc {
-    font-size: 0.85rem;
+    font-size: 0.98rem;
   }
   
   .dq-detail-cards {
@@ -179,15 +179,15 @@
   }
   
   .dq-detail-card-label {
-    font-size: 0.9rem;
+    font-size: 1.04rem;
   }
   
   .dq-detail-card-value {
-    font-size: 1.6rem;
+    font-size: 1.84rem;
   }
   
   .dq-detail-card-desc {
-    font-size: 0.75rem;
+    font-size: 0.86rem;
   }
   
 
@@ -203,11 +203,11 @@
   }
   
   .dq-condition-label {
-    font-size: 0.9rem;
+    font-size: 1.04rem;
   }
   
   .dq-condition-value {
-    font-size: 1.5rem;
+    font-size: 1.73rem;
   }
 }
 
@@ -216,7 +216,7 @@
 /* ===================== */
 @media (max-width: 480px) {
   .dq-today h2 {
-    font-size: 1.3rem;
+    font-size: 1.50rem;
     margin-bottom: 0.75rem;
   }
   .dq-temp-card {
@@ -228,19 +228,19 @@
     gap: 1rem;
   }
   .dq-temp-greeting {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
   .dq-temp-emoji {
-    font-size: 2.5rem;
+    font-size: 2.88rem;
   }
   .dq-temp-display {
-    font-size: 1.9rem;
+    font-size: 2.19rem;
   }
   .dq-temp-feels-label {
-    font-size: 0.9rem;
+    font-size: 1.04rem;
   }
   .dq-temp-feels-desc {
-    font-size: 0.8rem;
+    font-size: 0.92rem;
   }
   .dq-detail-cards {
     gap: 0.8rem;
@@ -252,13 +252,13 @@
     padding: 1rem;
   }
   .dq-detail-card-label {
-    font-size: 0.85rem;
+    font-size: 0.98rem;
   }
   .dq-detail-card-value {
-    font-size: 1.4rem;
+    font-size: 1.61rem;
   }
   .dq-detail-card-desc {
-    font-size: 0.7rem;
+    font-size: 0.81rem;
   }
   .dq-conditions-grid {
     gap: 0.6rem;
@@ -269,9 +269,9 @@
     padding: 0.8rem;
   }
   .dq-condition-label {
-    font-size: 0.85rem;
+    font-size: 0.98rem;
   }
   .dq-condition-value {
-    font-size: 1.3rem;
+    font-size: 1.50rem;
   }
 }

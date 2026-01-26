@@ -43,12 +43,12 @@
   text-align: center;
 }
 .dq-hourly-time {
-  font-size: 0.75rem;
+  font-size: 1.15rem;
   font-weight: 700;
   opacity: 0.85;
 }
 .dq-hourly-emoji {
-  font-size: 1.5rem;
+  font-size: 1.73rem;
   min-height: 64px;
   display: flex;
   align-items: center;
@@ -62,7 +62,7 @@
 }
 .dq-hourly-temp {
   display: inline-block;
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 800;
   min-width: 3em;
   text-align: center;
@@ -70,7 +70,7 @@
 .dq-hourly-precip {
   color: #b3e5fc;
   display: inline-block;
-  font-size: .7rem;
+  font-size: 1.15rem;
   min-width: 3em;
   opacity: 0.85;
   text-align: center;
@@ -78,7 +78,7 @@
 
 @media (max-width: 768px) {
   .dq-hourly-section h3 {
-    font-size: 1.2rem;
+    font-size: 1.38rem;
     margin-bottom: 0.75rem;
   }
   .dq-hourly-card {
@@ -87,20 +87,20 @@
     gap: 0.5rem;
   }
   .dq-hourly-time {
-    font-size: 0.8rem;
+    font-size: 0.92rem;
   }
   .dq-hourly-emoji {
-    font-size: 1.8rem;
+    font-size: 2.07rem;
     min-height: 64px;
   }
   .dq-hourly-temp {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
 }
 
 @media (max-width: 480px) {
   .dq-hourly-section h3 {
-    font-size: 1.1rem;
+    font-size: 1.27rem;
     margin-bottom: 0.5rem;
   }
   .dq-hourly-card {
@@ -109,13 +109,13 @@
     padding: 0.7rem 0.5rem;
   }
   .dq-hourly-time {
-    font-size: 0.7rem;
+    font-size: 0.81rem;
   }
   .dq-hourly-emoji {
-    font-size: 1.5rem;
+    font-size: 1.73rem;
     min-height: 56px;
   }
   .dq-hourly-temp {
-    font-size: 0.9rem;
+    font-size: 1.04rem;
   }
 }

@@ -14,7 +14,7 @@
 }
 
 .dq-about-title {
-  font-size: 2.5rem;
+  font-size: 2.88rem;
   font-weight: 900;
   color: #ffceed;
   text-align: center;
@@ -23,7 +23,7 @@
 }
 
 .dq-about-content {
-  font-size: 1.1rem;
+  font-size: 1.27rem;
   line-height: 1.8;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .dq-about-content h3 {
-  font-size: 1.8rem;
+  font-size: 2.07rem;
   font-weight: 800;
   color: #ec4899;
   margin: 2rem 0 1rem 0;
@@ -78,7 +78,7 @@
 .dq-about-tagline {
   margin-top: 2.5rem;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.73rem;
   font-weight: 900;
   color: #ffceed;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -90,19 +90,19 @@
   }
 
   .dq-about-title {
-    font-size: 2rem;
+    font-size: 2.30rem;
   }
 
   .dq-about-content {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
 
   .dq-about-content h3 {
-    font-size: 1.5rem;
+    font-size: 1.73rem;
   }
 
   .dq-about-tagline {
-    font-size: 1.2rem;
+    font-size: 1.38rem;
   }
 }
 
@@ -112,14 +112,14 @@
   }
 
   .dq-about-title {
-    font-size: 1.6rem;
+    font-size: 1.84rem;
   }
 
   .dq-about-content {
-    font-size: 0.95rem;
+    font-size: 1.09rem;
   }
 
   .dq-about-content h3 {
-    font-size: 1.3rem;
+    font-size: 1.50rem;
   }
 }

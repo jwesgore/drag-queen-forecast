@@ -12,7 +12,7 @@
   border: 2px solid transparent;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-family: inherit;
 }
 
@@ -28,7 +28,7 @@
 @media (max-width: 768px) {
   .dq-location {
     padding: 0.6rem 0.8rem;
-    font-size: 0.9rem;
+    font-size: 1.04rem;
     flex-wrap: wrap;
     white-space: normal;
   }
@@ -36,7 +36,7 @@
 
 @media (max-width: 480px) {
   .dq-location {
-    font-size: 0.8rem;
+    font-size: 0.92rem;
     padding: 0.5rem 0.6rem;
     flex-wrap: wrap;
   }
