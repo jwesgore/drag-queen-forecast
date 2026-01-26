@@ -22,6 +22,7 @@ type WeatherData = {
   humidity: number
   precipitationProbability: number
   hourly: Array<{ temperatureF: number; weatherCode: number; precipitationProbability?: number; time: Date }>
+  timezone?: string
 }
 
 function App() {
@@ -91,6 +92,7 @@ function App() {
         humidity: bundle.current.humidity,
         precipitationProbability: bundle.current.precipitationProbability ?? 0,
         hourly: bundle.hourly ?? [],
+        timezone: bundle.timezone,
       })
       setDaily(bundle.daily)
     } catch (e) {
@@ -131,13 +133,11 @@ function App() {
         onUseMyLocation={getLocation}
       />
 
-      {/* Loading indicator */}
       {loading && <div className="dq-loading">Fetching the shade…</div>}
 
       {currentPage === 'home' && (
         <>
           {weather && !loading && <TodaysForecast weather={weather} unit={unit} />}
-          {/* 3-day forecast tiles */}
           <ExtendedForecast daily={daily} unit={unit} />
         </>
       )}
