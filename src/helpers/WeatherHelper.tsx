@@ -174,7 +174,8 @@ export const fetchHourlyForecast = async (
   lat: number,
   lon: number,
   hours = 12
-): Promise<HourlyForecastItem[]> => {
+): Promise<{ items: HourlyForecastItem[], timezone: string }> => {
+  const requestHours = Math.max(hours + 12, 24)
   const url = 'https://api.open-meteo.com/v1/forecast'
   const params = {
     latitude: lat,
@@ -183,7 +184,9 @@ export const fetchHourlyForecast = async (
     temperature_unit: 'fahrenheit',
     wind_speed_unit: 'mph',
     timeformat: 'unixtime',
-    forecast_hours: hours,
+    forecast_hours: requestHours,
+    past_hours: 0,
+    timezone: 'auto',
   }
 
   const responses = await fetchWeatherApi(url, params)
@@ -192,6 +195,7 @@ export const fetchHourlyForecast = async (
   if (!hourly) throw new Error('No hourly forecast available')
 
   const utcOffsetSeconds = response.utcOffsetSeconds()
+  const timezone = response.timezone()
   const start = Number(hourly.time())
   const interval = hourly.interval()
 
@@ -209,7 +213,7 @@ export const fetchHourlyForecast = async (
     throw new Error('Unexpected hourly forecast payload')
   }
 
-  const len = Math.min(hours, temps.length)
+  const len = Math.min(requestHours, temps.length)
   const items: HourlyForecastItem[] = Array.from({ length: len }, (_, i) => {
     const ts = (start + i * interval + utcOffsetSeconds) * 1000
     return {
@@ -221,7 +225,12 @@ export const fetchHourlyForecast = async (
     }
   })
 
-  return items
+  // Filter to only include future hours (including current hour) and take the first 'hours' items
+  const now = new Date()
+  const futureItems = items.filter(item => item.time >= new Date(now.getTime() - 3600000)) // Include current hour
+  const resultItems = futureItems.slice(0, hours)
+
+  return { items: resultItems, timezone: timezone || 'UTC' }
 }
 
 // Get daily forecast from Open-Meteo
@@ -325,6 +334,7 @@ export interface ForecastBundle {
   current: CurrentWeather
   daily: DailyForecastItem[]
   hourly?: HourlyForecastItem[]
+  timezone: string
 }
 
 export const fetchForecastBundle = async (
@@ -333,10 +343,10 @@ export const fetchForecastBundle = async (
   days = 5,
   hours = 12
 ): Promise<ForecastBundle> => {
-  const [current, daily, hourly] = await Promise.all([
+  const [current, daily, hourlyResult] = await Promise.all([
     fetchWeather(lat, lon),
     fetchDailyForecast(lat, lon, days),
     fetchHourlyForecast(lat, lon, hours),
   ])
-  return { current, daily, hourly }
+  return { current, daily, hourly: hourlyResult.items, timezone: hourlyResult.timezone }
 }

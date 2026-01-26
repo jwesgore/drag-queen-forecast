@@ -18,6 +18,7 @@ interface TodaysForecastProps {
       precipitationProbability?: number
       time: Date 
     }>
+    timezone?: string
   }
   unit: 'F' | 'C'
 }
@@ -66,7 +67,7 @@ export function TodaysForecast({ weather, unit }: TodaysForecastProps) {
       </div>
 
       {/* 12-hour forecast cards */}
-      <HourlyForecast hourly={weather.hourly} unit={unit} tempSymbol={tempSymbol} />
+      <HourlyForecast hourly={weather.hourly} unit={unit} tempSymbol={tempSymbol} timezone={weather.timezone} />
     </section>
   )
 }

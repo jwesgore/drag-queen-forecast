@@ -12,9 +12,10 @@ interface HourlyForecastProps {
   }>;
   unit: 'F' | 'C';
   tempSymbol: string;
+  timezone?: string;
 }
 
-export function HourlyForecast({ hourly, unit, tempSymbol }: HourlyForecastProps) {
+export function HourlyForecast({ hourly, unit, tempSymbol, timezone }: HourlyForecastProps) {
   return (
     <div className="dq-hourly-section">
       <h3>Next 12 Hours</h3>
@@ -27,7 +28,7 @@ export function HourlyForecast({ hourly, unit, tempSymbol }: HourlyForecastProps
           return (
             <div className="dq-hourly-card" key={`h-${i}`}>
               <div className="dq-hourly-time">
-                {hour.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                {hour.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZone: timezone })}
               </div>
               <div className="dq-hourly-emoji">{getEmojiForCode(hour.weatherCode, { date: hourDate, isNight })}</div>
               <div className="dq-hourly-bottom">
