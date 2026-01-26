@@ -81,6 +81,7 @@
   align-items: center;
   justify-content: center;
   font-size: 2rem;
+  width: 64px;
 }
 
 
@@ -133,7 +134,7 @@
 
   .dq-weekly-emoji {
     font-size: 2.5rem;
-    width: 48px;
+    width: 64px;
   }
 
   .dq-weekly-temps {
@@ -171,7 +172,7 @@
     flex: 2;
     font-size: 2rem;
     margin: 0;
-    width: 44px;
+    width: 56px;
   }
 
   .dq-weekly-temps {

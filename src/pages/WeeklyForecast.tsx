@@ -28,7 +28,7 @@ export function WeeklyForecast({ daily, unit }: WeeklyForecastProps) {
                 {day.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
               </div>
               <div className="dq-weekly-day">{DraggifyNameOfDay(day.date.getDay())}</div>
-              <div className="dq-weekly-emoji">{getEmojiForCode(day.weatherCode)}</div>
+              <div className="dq-weekly-emoji">{getEmojiForCode(day.weatherCode, { isNight: false })}</div>
               <div className="dq-weekly-temps">
                 <span className="dq-weekly-high">{high}{tempSymbol}</span>
                 <span className="dq-weekly-divider">/</span>

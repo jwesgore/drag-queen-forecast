@@ -12,14 +12,30 @@ export const isRainy = (code: number) => [51, 53, 55, 61, 63, 65, 80, 81, 82].in
 export const isStormy = (code: number) => [95, 96, 99].includes(code)
 
 // Map WMO weather codes to emoji
-export const getEmojiForCode = (code: number): string => {
-	if (isThunderstorm(code)) return '⛈️'
-	if (isRain(code)) return '🌧️'
-	if (isFog(code)) return '🌫️'
-	if (isCloud(code) && code <= 1) return '☀️'
-	if (isCloud(code)) return '⛅'
-	if (isSnow(code)) return '❄️'
-	return '✨'
+export const getEmojiForCode = (
+  code: number,
+  opts?: { date?: Date; isNight?: boolean }
+): any => {
+  // Determine night vs day: explicit flag > provided date > local time
+  const isNight = opts?.isNight ?? (() => {
+    const d = opts?.date ?? new Date()
+    const h = d.getHours()
+    return h < 6 || h >= 18
+  })()
+
+  const prefix = isNight ? 'night_' : 'day_'
+
+  // Use specific night/day variants where available
+  if (isThunderstorm(code)) return <img src={`/${prefix}thunderstorm.png`} alt="thunderstorm" className="dq-weather-icon" />
+  if (isRain(code)) return <img src={`/${prefix}rainy.png`} alt="rain" className="dq-weather-icon" />
+  if (isFog(code)) return <img src={`/${prefix}cloudy.png`} alt="fog" className="dq-weather-icon" />
+  if (isCloud(code) && code <= 1) return <img src={`/${prefix}clear.png`} alt="clear" className="dq-weather-icon" />
+  if (isCloud(code)) {
+    const cloudFile = isNight ? 'night_cloudy_partially.png' : 'day_cloudy_partially.png'
+    return <img src={`/${cloudFile}`} alt="cloudy" className="dq-weather-icon" />
+  }
+  if (isSnow(code)) return <img src={`/${prefix}snowy.png`} alt="snow" className="dq-weather-icon" />
+  return <img src={`/${prefix}clear.png`} alt="clear" className="dq-weather-icon" />
 }
 
 type CurrentLike = Pick<CurrentWeather, 'temperatureF' | 'weatherCode'> | { temperature: number; weathercode: number }

@@ -65,3 +65,18 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Weather icon sizing used across components */
+.dq-weather-icon,
+.dq-precip-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+/* Slightly smaller for precip icons */
+.dq-precip-icon {
+  width: 16px;
+  height: 16px;
+}

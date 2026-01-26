@@ -25,6 +25,11 @@
 .dq-temp-emoji {
   font-size: 3.5rem;
 }
+/* make today's main icon larger than standard icons */
+.dq-temp-emoji img.dq-weather-icon {
+  width: 96px;
+  height: 96px;
+}
 .dq-temp-display {
   font-size: 3rem;
   font-weight: 900;
