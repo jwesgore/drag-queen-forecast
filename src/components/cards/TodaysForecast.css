@@ -61,7 +61,6 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  background: linear-gradient(135deg, #7f1d9b, #ec4899);
   color: #fff;
   padding: 2rem;
   border-radius: 16px;
@@ -71,6 +70,19 @@
   box-sizing: border-box;
   overflow: hidden;
   text-align: center;
+  background-size: cover;
+  background-position: center;
+  /* fallback gradient if images fail to load */
+  background-color: #7f1d9b;
+}
+
+/* Day and night background images (public/) with a subtle overlay for legibility */
+.dq-temp-card.dq-day {
+  background-image: linear-gradient(rgba(34,10,40,0.55), rgba(236,72,154,0.15)), url('/daysky.webp');
+}
+
+.dq-temp-card.dq-night {
+  background-image: linear-gradient(rgba(4,6,20,0.65), rgba(37,8,46,0.25)), url('/nightsky.jpg');
 }
 /* Detail cards grid */
 .dq-detail-cards {

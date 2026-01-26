@@ -28,10 +28,13 @@ export function TodaysForecast({ weather, unit }: TodaysForecastProps) {
   const tempSymbol = unit === 'F' ? '°F' : '°C';
   const windValue = unit === 'F' ? Math.round(weather.windspeed) : Math.round(mphToKph(weather.windspeed));
   const windUnit = unit === 'F' ? 'mph' : 'kph';
+  const hour = new Date().getHours()
+  const isDay = hour >= 6 && hour < 18
+
   return (
     <section className="dq-today">
       {/* Large current temperature card */}
-      <div className="dq-temp-card">
+      <div className={`dq-temp-card ${isDay ? 'dq-day' : 'dq-night'}`}>
         <div className="dq-temp-left">
           <div className="dq-temp-greeting">Happy {DraggifyNameOfDay(new Date().getDay())}</div>
           <div className="dq-temp-emoji">{getEmojiForCode(weather.weathercode)}</div>
