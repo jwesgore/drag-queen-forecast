@@ -288,14 +288,13 @@ export const fetchDailyForecast = async (
     }
   })
 
-  // Filter out past dates - only show today and future
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  
+  // Filter out past dates - use UTC comparisons since dates are encoded as UTC-midnight = local-midnight
+  const now = new Date()
+  const todayUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())
+
   return items.filter(item => {
-    const itemDate = new Date(item.date)
-    itemDate.setHours(0, 0, 0, 0)
-    return itemDate >= today
+    const itemUTC = Date.UTC(item.date.getUTCFullYear(), item.date.getUTCMonth(), item.date.getUTCDate())
+    return itemUTC >= todayUTC
   })
 }
 

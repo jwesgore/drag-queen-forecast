@@ -25,9 +25,9 @@ export function WeeklyForecast({ daily, unit }: WeeklyForecastProps) {
           return (
             <div className="dq-weekly-card" key={index}>
               <div className="dq-weekly-date">
-                {day.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                {day.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })}
               </div>
-              <div className="dq-weekly-day">{DraggifyNameOfDay(day.date.getDay())}</div>
+              <div className="dq-weekly-day">{DraggifyNameOfDay(day.date.getUTCDay())}</div>
               <div className="dq-weekly-emoji">{getEmojiForCode(day.weatherCode, { isNight: false })}</div>
               <div className="dq-weekly-temps">
                 <span className="dq-weekly-high">{high}{tempSymbol}</span>

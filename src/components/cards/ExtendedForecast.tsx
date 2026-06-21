@@ -12,16 +12,13 @@ interface ExtendedForecastProps {
 export function ExtendedForecast({ daily, unit }: ExtendedForecastProps) {
   if (daily.length === 0) return null
 
-  // Find tomorrow's index by comparing dates
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  const tomorrow = new Date(today)
-  tomorrow.setDate(tomorrow.getDate() + 1)
+  // Find tomorrow's index by comparing dates (use UTC since forecast dates are encoded as UTC-midnight = local-midnight)
+  const now = new Date()
+  const tomorrowUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate() + 1)
 
   const tomorrowIndex = daily.findIndex(d => {
-    const forecastDate = new Date(d.date)
-    forecastDate.setHours(0, 0, 0, 0)
-    return forecastDate.getTime() === tomorrow.getTime()
+    const forecastUTC = Date.UTC(d.date.getUTCFullYear(), d.date.getUTCMonth(), d.date.getUTCDate())
+    return forecastUTC === tomorrowUTC
   })
 
   const startIndex = tomorrowIndex !== -1 ? tomorrowIndex : 1
@@ -38,7 +35,7 @@ export function ExtendedForecast({ daily, unit }: ExtendedForecastProps) {
           return (
             <div className="dq-forecast-tile" key={`d-${i}`}>
               <div className="dq-forecast-day">
-                {DraggifyNameOfDay(d.date.getDay())}
+                {DraggifyNameOfDay(d.date.getUTCDay())}
               </div>
               <div className="dq-forecast-body">
                 <div className="dq-forecast-emoji">
